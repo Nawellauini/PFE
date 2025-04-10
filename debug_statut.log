@@ -1,0 +1,132 @@
+[2025-04-03 15:04:15] Début du traitement
+[2025-04-03 15:04:15] ID: 9, Statut: مقبول
+[2025-04-03 15:04:15] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 9
+[2025-04-03 15:04:15] Candidat trouvé: norhene laouini, Email: nawellaouini210@gmail.com, Matière: التربية الإسلامية
+[2025-04-03 15:04:15] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 9
+[2025-04-03 15:04:15] Mise à jour réussie avec la méthode 1
+[2025-04-03 15:04:15] Statut après mise à jour: 
+[2025-04-03 15:04:15] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-03 15:04:15] Résultat méthode 2: Succès
+[2025-04-03 15:04:15] Méthode 3 (valeur simple): Succès
+[2025-04-03 15:04:17] Email envoyé avec succès
+[2025-04-03 15:04:37] Début du traitement
+[2025-04-03 15:04:37] ID: 8, Statut: مقبول
+[2025-04-03 15:04:37] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 8
+[2025-04-03 15:04:37] Candidat trouvé: nawel laouini, Email: nawellaouini210@gmail.com, Matière: الرياضيات
+[2025-04-03 15:04:37] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 8
+[2025-04-03 15:04:37] Mise à jour réussie avec la méthode 1
+[2025-04-03 15:04:37] Statut après mise à jour: 
+[2025-04-03 15:04:37] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-03 15:04:37] Résultat méthode 2: Succès
+[2025-04-03 15:04:37] Méthode 3 (valeur simple): Succès
+[2025-04-03 15:04:39] Email envoyé avec succès
+[2025-04-03 15:12:24] Début du traitement
+[2025-04-03 15:12:24] ID: 9, Statut: مقبول
+[2025-04-03 15:12:24] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 9
+[2025-04-03 15:12:24] Candidat trouvé: norhene laouini, Email: nawellaouini210@gmail.com, Matière: التربية الإسلامية
+[2025-04-03 15:12:24] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 9
+[2025-04-03 15:12:24] Mise à jour réussie avec la méthode 1
+[2025-04-03 15:12:24] Statut après mise à jour: 
+[2025-04-03 15:12:24] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-03 15:12:24] Résultat méthode 2: Succès
+[2025-04-03 15:12:24] Méthode 3 (valeur simple): Succès
+[2025-04-03 15:12:26] Email envoyé avec succès
+[2025-04-03 15:14:46] Début du traitement
+[2025-04-03 15:14:46] ID: 9, Statut: مرفوض
+[2025-04-03 15:14:46] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 9
+[2025-04-03 15:14:46] Candidat trouvé: norhene laouini, Email: nawellaouini210@gmail.com, Matière: التربية الإسلامية
+[2025-04-03 15:14:46] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مرفوض' WHERE id = 9
+[2025-04-03 15:14:46] Mise à jour réussie avec la méthode 1
+[2025-04-03 15:14:46] Statut après mise à jour: 
+[2025-04-03 15:14:46] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-03 15:14:46] Résultat méthode 2: Succès
+[2025-04-03 15:14:46] Méthode 3 (valeur simple): Succès
+[2025-04-03 15:14:48] Email envoyé avec succès
+[2025-04-03 15:16:07] Début du traitement
+[2025-04-03 15:16:07] ID: 10, Statut: مقبول
+[2025-04-03 15:16:07] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 10
+[2025-04-03 15:16:07] Candidat trouvé: makiya laouini, Email: nawellaouini210@gmail.com, Matière: اللغة العربية
+[2025-04-03 15:16:07] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 10
+[2025-04-03 15:16:07] Mise à jour réussie avec la méthode 1
+[2025-04-03 15:16:07] Statut après mise à jour: 
+[2025-04-03 15:16:07] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-03 15:16:07] Résultat méthode 2: Succès
+[2025-04-03 15:16:07] Méthode 3 (valeur simple): Succès
+[2025-04-03 15:16:09] Email envoyé avec succès
+[2025-04-03 15:16:22] Début du traitement
+[2025-04-03 15:16:22] ID: 9, Statut: مقبول
+[2025-04-03 15:16:22] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 9
+[2025-04-03 15:16:22] Candidat trouvé: norhene laouini, Email: nawellaouini210@gmail.com, Matière: التربية الإسلامية
+[2025-04-03 15:16:22] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 9
+[2025-04-03 15:16:22] Mise à jour réussie avec la méthode 1
+[2025-04-03 15:16:22] Statut après mise à jour: 
+[2025-04-03 15:16:22] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-03 15:16:22] Résultat méthode 2: Succès
+[2025-04-03 15:16:22] Méthode 3 (valeur simple): Succès
+[2025-04-03 15:16:24] Email envoyé avec succès
+[2025-04-04 15:33:09] Début du traitement
+[2025-04-04 15:33:09] ID: 10, Statut: مقبول
+[2025-04-04 15:33:09] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 10
+[2025-04-04 15:33:09] Candidat trouvé: makiya laouini, Email: nawellaouini210@gmail.com, Matière: اللغة العربية
+[2025-04-04 15:33:09] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 10
+[2025-04-04 15:33:09] Mise à jour réussie avec la méthode 1
+[2025-04-04 15:33:09] Statut après mise à jour: 
+[2025-04-04 15:33:09] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-04 15:33:09] Résultat méthode 2: Succès
+[2025-04-04 15:33:09] Méthode 3 (valeur simple): Succès
+[2025-04-04 15:33:11] Email envoyé avec succès
+[2025-04-04 15:33:33] Début du traitement
+[2025-04-04 15:33:33] ID: 9, Statut: مرفوض
+[2025-04-04 15:33:33] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 9
+[2025-04-04 15:33:33] Candidat trouvé: norhene laouini, Email: nawellaouini210@gmail.com, Matière: التربية الإسلامية
+[2025-04-04 15:33:33] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مرفوض' WHERE id = 9
+[2025-04-04 15:33:33] Mise à jour réussie avec la méthode 1
+[2025-04-04 15:33:33] Statut après mise à jour: 
+[2025-04-04 15:33:33] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-04 15:33:33] Résultat méthode 2: Succès
+[2025-04-04 15:33:33] Méthode 3 (valeur simple): Succès
+[2025-04-04 15:33:35] Email envoyé avec succès
+[2025-04-04 15:37:48] Début du traitement
+[2025-04-04 15:37:48] ID: 8, Statut: مرفوض
+[2025-04-04 15:37:48] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 8
+[2025-04-04 15:37:48] Candidat trouvé: nawel laouini, Email: nawellaouini210@gmail.com, Matière: الرياضيات
+[2025-04-04 15:37:48] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مرفوض' WHERE id = 8
+[2025-04-04 15:37:48] Mise à jour réussie avec la méthode 1
+[2025-04-04 15:37:48] Statut après mise à jour: 
+[2025-04-04 15:37:48] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-04 15:37:48] Résultat méthode 2: Succès
+[2025-04-04 15:37:48] Méthode 3 (valeur simple): Succès
+[2025-04-04 15:37:50] Email envoyé avec succès
+[2025-04-04 15:38:42] Début du traitement
+[2025-04-04 15:38:42] ID: 8, Statut: مقبول
+[2025-04-04 15:38:42] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 8
+[2025-04-04 15:38:42] Candidat trouvé: nawel laouini, Email: nawellaouini210@gmail.com, Matière: الرياضيات
+[2025-04-04 15:38:42] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 8
+[2025-04-04 15:38:42] Mise à jour réussie avec la méthode 1
+[2025-04-04 15:38:42] Statut après mise à jour: 
+[2025-04-04 15:38:42] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-04 15:38:42] Résultat méthode 2: Succès
+[2025-04-04 15:38:42] Méthode 3 (valeur simple): Succès
+[2025-04-04 15:38:47] Email envoyé avec succès
+[2025-04-04 15:53:50] Début du traitement
+[2025-04-04 15:53:50] ID: 10, Statut: مقبول
+[2025-04-04 15:53:50] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 10
+[2025-04-04 15:53:50] Candidat trouvé: makiya laouini, Email: nawellaouini210@gmail.com, Matière: اللغة العربية
+[2025-04-04 15:53:50] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 10
+[2025-04-04 15:53:50] Mise à jour réussie avec la méthode 1
+[2025-04-04 15:53:50] Statut après mise à jour: 
+[2025-04-04 15:53:50] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-04 15:53:50] Résultat méthode 2: Succès
+[2025-04-04 15:53:50] Méthode 3 (valeur simple): Succès
+[2025-04-04 15:53:52] Email envoyé avec succès
+[2025-04-07 17:37:35] Début du traitement
+[2025-04-07 17:37:35] ID: 10, Statut: مقبول
+[2025-04-07 17:37:35] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 10
+[2025-04-07 17:37:35] Candidat trouvé: makiya laouini, Email: nawellaouini210@gmail.com, Matière: اللغة العربية
+[2025-04-07 17:37:35] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 10
+[2025-04-07 17:37:35] Mise à jour réussie avec la méthode 1
+[2025-04-07 17:37:35] Statut après mise à jour: 
+[2025-04-07 17:37:35] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-07 17:37:35] Résultat méthode 2: Succès
+[2025-04-07 17:37:35] Méthode 3 (valeur simple): Succès
+[2025-04-07 17:37:39] Email envoyé avec succès

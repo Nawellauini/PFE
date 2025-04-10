@@ -1,0 +1,354 @@
+2025-03-11 11:22:42 - POST: Array
+(
+    [classe_id] => 9
+    [matiere_id] => 2
+    [id_professeur] => 3
+    [trimestre] => 1
+    [notes] => Array
+        (
+            [135] => 11
+            [137] => 12
+            [138] => 6
+            [139] => 6
+            [140] => 8
+            [141] => 12
+            [142] => 
+            [143] => 
+            [144] => 
+            [145] => 
+            [146] => 
+            [147] => 
+            [148] => 
+            [149] => 
+            [150] => 
+            [151] => 
+            [152] => 
+            [153] => 
+        )
+
+)
+
+2025-03-11 11:22:42 - Données validées: classe=9, matiere=2, trimestre=1
+2025-03-11 11:22:42 - Exception: Erreur de préparation de la requête: Unknown column 'id_matiere' in 'field list'
+2025-03-11 11:34:25 - Début de l'exécution
+2025-03-11 11:34:25 - POST: Array
+(
+    [classe_id] => 9
+    [matiere_id] => 3
+    [id_professeur] => 3
+    [trimestre] => 1
+    [notes] => Array
+        (
+            [135] => 12
+            [137] => 11
+            [138] => 
+            [139] => 
+            [140] => 
+            [141] => 
+            [142] => 
+            [143] => 
+            [144] => 
+            [145] => 
+            [146] => 
+            [147] => 
+            [148] => 
+            [149] => 
+            [150] => 
+            [151] => 
+            [152] => 
+            [153] => 
+        )
+
+)
+
+2025-03-11 11:34:25 - Notes reçues: Array
+(
+    [135] => 12
+    [137] => 11
+    [138] => 
+    [139] => 
+    [140] => 
+    [141] => 
+    [142] => 
+    [143] => 
+    [144] => 
+    [145] => 
+    [146] => 
+    [147] => 
+    [148] => 
+    [149] => 
+    [150] => 
+    [151] => 
+    [152] => 
+    [153] => 
+)
+
+2025-03-11 11:34:25 - Début de la transaction
+2025-03-11 11:34:25 - Traitement de la note: 12 pour élève 135
+2025-03-11 11:34:25 - Erreur: Erreur de préparation de la requête check: Unknown column 'id_matiere' in 'where clause'
+2025-03-11 11:48:57 - Début de l'exécution
+2025-03-11 11:48:57 - POST: Array
+(
+    [classe_id] => 5
+    [matiere_id] => 46
+    [id_professeur] => 3
+    [trimestre] => 1
+    [notes] => Array
+        (
+            [76] => 11
+            [77] => 
+            [78] => 
+            [79] => 
+            [80] => 
+            [81] => 
+            [82] => 
+            [83] => 
+            [84] => 
+            [85] => 
+            [86] => 
+            [87] => 
+            [88] => 
+            [89] => 
+            [90] => 
+            [91] => 
+            [92] => 
+        )
+
+)
+
+2025-03-11 11:48:57 - Notes reçues: Array
+(
+    [76] => 11
+    [77] => 
+    [78] => 
+    [79] => 
+    [80] => 
+    [81] => 
+    [82] => 
+    [83] => 
+    [84] => 
+    [85] => 
+    [86] => 
+    [87] => 
+    [88] => 
+    [89] => 
+    [90] => 
+    [91] => 
+    [92] => 
+)
+
+2025-03-11 11:48:57 - Traitement de la note: 11 pour élève 76
+2025-03-11 11:48:57 - Erreur: Erreur de préparation de la requête check: Unknown column 'id_matiere' in 'where clause'
+2025-03-11 11:49:23 - Début de l'exécution
+2025-03-11 11:49:23 - POST: Array
+(
+    [classe_id] => 5
+    [matiere_id] => 46
+    [id_professeur] => 3
+    [trimestre] => 2
+    [notes] => Array
+        (
+            [76] => 12
+            [77] => 
+            [78] => 
+            [79] => 
+            [80] => 
+            [81] => 
+            [82] => 
+            [83] => 
+            [84] => 
+            [85] => 
+            [86] => 
+            [87] => 
+            [88] => 
+            [89] => 
+            [90] => 
+            [91] => 
+            [92] => 
+        )
+
+)
+
+2025-03-11 11:49:23 - Notes reçues: Array
+(
+    [76] => 12
+    [77] => 
+    [78] => 
+    [79] => 
+    [80] => 
+    [81] => 
+    [82] => 
+    [83] => 
+    [84] => 
+    [85] => 
+    [86] => 
+    [87] => 
+    [88] => 
+    [89] => 
+    [90] => 
+    [91] => 
+    [92] => 
+)
+
+2025-03-11 11:49:23 - Traitement de la note: 12 pour élève 76
+2025-03-11 11:49:23 - Erreur: Erreur de préparation de la requête check: Unknown column 'id_matiere' in 'where clause'
+2025-03-11 11:51:28 - Début de l'exécution
+2025-03-11 11:51:28 - POST: Array
+(
+    [classe_id] => 5
+    [matiere_id] => 46
+    [id_professeur] => 3
+    [trimestre] => 2
+    [notes] => Array
+        (
+            [76] => 12
+            [77] => 
+            [78] => 
+            [79] => 
+            [80] => 
+            [81] => 
+            [82] => 
+            [83] => 
+            [84] => 
+            [85] => 
+            [86] => 
+            [87] => 
+            [88] => 
+            [89] => 
+            [90] => 
+            [91] => 
+            [92] => 
+        )
+
+)
+
+2025-03-11 11:51:28 - Notes reçues: Array
+(
+    [76] => 12
+    [77] => 
+    [78] => 
+    [79] => 
+    [80] => 
+    [81] => 
+    [82] => 
+    [83] => 
+    [84] => 
+    [85] => 
+    [86] => 
+    [87] => 
+    [88] => 
+    [89] => 
+    [90] => 
+    [91] => 
+    [92] => 
+)
+
+2025-03-11 11:51:28 - Traitement de la note: 12 pour élève 76
+2025-03-11 11:51:28 - Erreur: Erreur de préparation de la requête check: Unknown column 'id_matiere' in 'where clause'
+2025-03-11 11:51:32 - Début de l'exécution
+2025-03-11 11:51:32 - POST: Array
+(
+    [classe_id] => 5
+    [matiere_id] => 46
+    [id_professeur] => 3
+    [trimestre] => 2
+    [notes] => Array
+        (
+            [76] => 12
+            [77] => 
+            [78] => 
+            [79] => 
+            [80] => 
+            [81] => 
+            [82] => 
+            [83] => 
+            [84] => 
+            [85] => 
+            [86] => 
+            [87] => 
+            [88] => 
+            [89] => 
+            [90] => 
+            [91] => 
+            [92] => 
+        )
+
+)
+
+2025-03-11 11:51:32 - Notes reçues: Array
+(
+    [76] => 12
+    [77] => 
+    [78] => 
+    [79] => 
+    [80] => 
+    [81] => 
+    [82] => 
+    [83] => 
+    [84] => 
+    [85] => 
+    [86] => 
+    [87] => 
+    [88] => 
+    [89] => 
+    [90] => 
+    [91] => 
+    [92] => 
+)
+
+2025-03-11 11:51:32 - Traitement de la note: 12 pour élève 76
+2025-03-11 11:51:32 - Erreur: Erreur de préparation de la requête check: Unknown column 'id_matiere' in 'where clause'
+2025-03-11 11:53:01 - Début de l'exécution
+2025-03-11 11:53:01 - POST: Array
+(
+    [classe_id] => 5
+    [matiere_id] => 46
+    [id_professeur] => 3
+    [trimestre] => 2
+    [notes] => Array
+        (
+            [76] => 12
+            [77] => 
+            [78] => 
+            [79] => 
+            [80] => 
+            [81] => 
+            [82] => 
+            [83] => 
+            [84] => 
+            [85] => 
+            [86] => 
+            [87] => 
+            [88] => 
+            [89] => 
+            [90] => 
+            [91] => 
+            [92] => 
+        )
+
+)
+
+2025-03-11 11:53:01 - Notes reçues: Array
+(
+    [76] => 12
+    [77] => 
+    [78] => 
+    [79] => 
+    [80] => 
+    [81] => 
+    [82] => 
+    [83] => 
+    [84] => 
+    [85] => 
+    [86] => 
+    [87] => 
+    [88] => 
+    [89] => 
+    [90] => 
+    [91] => 
+    [92] => 
+)
+
+2025-03-11 11:53:01 - Traitement de la note: 12 pour élève 76
+2025-03-11 11:53:02 - Nouvelle note insérée pour élève 76: 12
+2025-03-11 11:53:02 - 1 notes enregistrées
