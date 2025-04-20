@@ -1,6 +1,9 @@
 <?php
+
+
 // Inclure la configuration pour la connexion à la base de données
 require_once 'db_config.php';
+
 session_start();
 
 // Vérifier si le professeur est connecté
@@ -552,7 +555,7 @@ $queryObservations->close();
                 </a>
                 <ul class="nav-links">
                 <li><a href="dashboardProf.php" class="active"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a></li>
-                    <li><a href="classes.php"><i class="fas fa-users"></i> الدروس</a></li>
+                <li><a href="classes.php"><i class="fas fa-users"></i> الأقسام</a></li>
                     <li><a href="calendar.php"><i class="fas fa-calendar-alt"></i> الرزنامة</a></li>
                     <li><a href="calendar_events.php"><i class="fas fa-plus-circle"></i> إضافة موعد </a></li>
                     <li><a href="historique.php" class="active"><i class="fas fa-history"></i> الأرشيف</a></li>
@@ -694,7 +697,7 @@ $queryObservations->close();
                     <h3 class="footer-title">روابط سريعة</h3>
                     <ul class="footer-links">
                     <li><a href="dashboardProf.php">لوحة التحكم</a></li>
-                        <li><a href="classes.php" class="active"><i class="fas fa-users"></i> الدروس</a></li>
+                    <li><a href="classes.php"><i class="fas fa-users"></i> الأقسام</a></li>
                         <li><a href="calendar.php"><i class="fas fa-calendar-alt"></i> الرزنامة</a></li>
                         <li><a href="calendar_events.php"><i class="fas fa-plus-circle"></i> إضافة موعد </a></li>
                         <li><a href="historique.php" class="active"><i class="fas fa-history"></i> الأرشيف</a></li>

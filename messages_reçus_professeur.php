@@ -2,6 +2,7 @@
 session_start();
 require_once 'db_config.php';
 
+// Vérifier si l'utilisateur est connecté en tant que professeur
 if (!isset($_SESSION['id_professeur'])) {
     header("Location: login.php");
     exit;
@@ -19,6 +20,20 @@ $stmt_prof->execute();
 $result_prof = $stmt_prof->get_result();
 $professeur = $result_prof->fetch_assoc();
 $stmt_prof->close();
+
+// Compter les messages non lus
+$query_unread = "SELECT COUNT(*) as unread_count 
+                FROM message_eleve 
+                WHERE id_professeur = ? AND is_read = 0";
+$stmt_unread = $conn->prepare($query_unread);
+if ($stmt_unread === false) {
+    die("Erreur de préparation de la requête: " . $conn->error);
+}
+$stmt_unread->bind_param("i", $id_professeur);
+$stmt_unread->execute();
+$result_unread = $stmt_unread->get_result();
+$unread_count = $result_unread->fetch_assoc()['unread_count'];
+$stmt_unread->close();
 
 // Filtres
 $filter_eleve = isset($_GET['eleve']) ? intval($_GET['eleve']) : 0;
@@ -55,8 +70,10 @@ $query .= " ORDER BY m.date_sent DESC";
 
 $stmt = $conn->prepare($query);
 if ($stmt === false) {
-    die("Erreur de préparation de la requête: " . $conn->error);
+    die("Erreur de préparation de la requête: " . $conn->error . "<br>Requête: " . $query);
 }
+
+// Utiliser bind_param avec un tableau de paramètres
 $stmt->bind_param($types, ...$params);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -506,6 +523,35 @@ $result_eleves = $stmt_eleves->get_result();
             background-color: #f8f9fa;
         }
 
+        /* Styles pour les messages non lus */
+        .unread-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--danger-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .unread-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: var(--danger-color);
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .message-unread {
+            font-weight: bold;
+            background-color: rgba(229, 83, 83, 0.05);
+        }
+
         @media (max-width: 768px) {
             .filter-bar {
                 flex-direction: column;
@@ -533,6 +579,9 @@ $result_eleves = $stmt_eleves->get_result();
         <h1 class="page-title">
             <i class="fas fa-inbox"></i>
             الرسائل الواردة من الطلاب
+            <?php if ($unread_count > 0): ?>
+                <span class="unread-badge"><?php echo $unread_count; ?></span>
+            <?php endif; ?>
         </h1>
 
         <div class="card">
@@ -543,6 +592,9 @@ $result_eleves = $stmt_eleves->get_result();
                 </div>
                 <div>
                     <?php echo $result->num_rows; ?> رسالة
+                    <?php if ($unread_count > 0): ?>
+                        <span style="color: #ff6b6b; margin-right: 5px;">(<?php echo $unread_count; ?> غير مقروءة)</span>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="card-body">
@@ -582,19 +634,24 @@ $result_eleves = $stmt_eleves->get_result();
                         </thead>
                         <tbody>
                             <?php while ($message = $result->fetch_assoc()): ?>
-                                <tr>
+                                <tr class="<?php echo ($message['is_read'] == 0) ? 'message-unread' : ''; ?>">
                                     <td class="message-sender">
                                         <div class="student-avatar">
                                             <?php echo substr($message['nom_eleve'], 0, 1); ?>
                                         </div>
                                         <div>
-                                            <div><?php echo htmlspecialchars($message['nom_eleve'] . ' ' . $message['prenom_eleve']); ?></div>
+                                            <div>
+                                                <?php if ($message['is_read'] == 0): ?>
+                                                    <span class="unread-indicator"></span>
+                                                <?php endif; ?>
+                                                <?php echo htmlspecialchars($message['nom_eleve'] . ' ' . $message['prenom_eleve']); ?>
+                                            </div>
                                             <div class="student-class"><?php echo htmlspecialchars($message['nom_classe']); ?></div>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="message-subject">
-                                            <i class="fas fa-envelope"></i>
+                                            <i class="fas fa-envelope<?php echo ($message['is_read'] == 0) ? '' : '-open'; ?>"></i>
                                             <?php echo htmlspecialchars($message['subject']); ?>
                                         </div>
                                     </td>
@@ -613,7 +670,7 @@ $result_eleves = $stmt_eleves->get_result();
                                     </td>
                                     <td>
                                         <div class="message-actions">
-                                            <button class="action-btn action-btn-view view-message" data-id="<?php echo $message['id']; ?>" data-subject="<?php echo htmlspecialchars($message['subject']); ?>" data-message="<?php echo htmlspecialchars($message['message_text']); ?>" data-sender="<?php echo htmlspecialchars($message['nom_eleve'] . ' ' . $message['prenom_eleve']); ?>" data-date="<?php echo date('d/m/Y H:i', strtotime($message['date_sent'])); ?>" data-attachment="<?php echo htmlspecialchars($message['attachment_path']); ?>" title="عرض الرسالة">
+                                            <button class="action-btn action-btn-view view-message" data-id="<?php echo $message['id']; ?>" data-student-id="<?php echo $message['id_eleve']; ?>" data-subject="<?php echo htmlspecialchars($message['subject']); ?>" data-message="<?php echo htmlspecialchars($message['message_text']); ?>" data-sender="<?php echo htmlspecialchars($message['nom_eleve'] . ' ' . $message['prenom_eleve']); ?>" data-date="<?php echo date('d/m/Y H:i', strtotime($message['date_sent'])); ?>" data-attachment="<?php echo htmlspecialchars($message['attachment_path']); ?>" title="عرض الرسالة">
                                                 <i class="fas fa-eye"></i>
                                             </button>
                                             <a href="envoyer_message.php?reply_to=<?php echo $message['id_eleve']; ?>" class="action-btn action-btn-reply" title="الرد">
@@ -712,6 +769,7 @@ $result_eleves = $stmt_eleves->get_result();
                 const sender = $(this).data('sender');
                 const date = $(this).data('date');
                 const attachment = $(this).data('attachment');
+                const studentId = $(this).data('student-id');
                 
                 $('#modalTitle').text('عرض الرسالة');
                 $('#modalSender').text(sender);
@@ -728,11 +786,33 @@ $result_eleves = $stmt_eleves->get_result();
                 }
                 
                 // Configurer le bouton de réponse
-                const studentId = $(this).closest('tr').find('.view-message').data('student-id');
                 $('#replyButton').attr('href', 'envoyer_message.php?reply_to=' + studentId);
                 
                 // Afficher le modal
                 $('#messageModal').css('display', 'flex');
+                
+                // Marquer le message comme lu
+                $.ajax({
+                    url: 'mark_message_read.php',
+                    type: 'POST',
+                    data: { message_id: messageId },
+                    success: function(response) {
+                        // Mettre à jour l'interface utilisateur
+                        const row = $(this).closest('tr');
+                        row.removeClass('message-unread');
+                        row.find('.unread-indicator').remove();
+                        $(this).find('i.fas').removeClass('fa-envelope').addClass('fa-envelope-open');
+                        
+                        // Mettre à jour le compteur de messages non lus
+                        let unreadCount = parseInt($('.unread-badge').text());
+                        if (unreadCount > 1) {
+                            $('.unread-badge').text(unreadCount - 1);
+                        } else {
+                            $('.unread-badge').remove();
+                            $('span[style*="color: #ff6b6b"]').remove();
+                        }
+                    }.bind(this)
+                });
             });
 
             // Fermer le modal

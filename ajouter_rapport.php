@@ -2,6 +2,7 @@
 session_start();
 include 'db_config.php';
 
+
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['id_inspecteur'])) {
     header("Location: login.php?error=يجب أن تكون متصلاً كمفتش");

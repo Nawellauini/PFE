@@ -1,5 +1,8 @@
 <?php
 include 'db_config.php';
+require 'send_email.php';  
+
+// Ajout de l'inclusion du fichier send_email.php
 
 // Récupération du filtre de classe
 $classe_filter = isset($_GET['classe_id']) ? intval($_GET['classe_id']) : 0;
@@ -8,7 +11,7 @@ $classe_filter = isset($_GET['classe_id']) ? intval($_GET['classe_id']) : 0;
 $classes_result = $conn->query("SELECT id_classe, nom_classe FROM classes ORDER BY nom_classe");
 
 // Récupération des élèves avec filtrage par classe et/ou lettre
-$sql = "SELECT e.*, c.nom_classe, SUBSTRING(e.nom, 1, 1) as premiere_lettre FROM eleves e 
+$sql = "SELECT e.*, c.nom_classe FROM eleves e 
         JOIN classes c ON e.id_classe = c.id_classe WHERE 1=1"; 
 
 if ($classe_filter > 0) {
@@ -21,8 +24,8 @@ if (isset($_GET['letter']) && $_GET['letter'] != 'all') {
     $sql .= " AND e.nom LIKE '$letter%'";
 }
 
-// Tri par première lettre, puis par nom complet
-$sql .= " ORDER BY premiere_lettre, e.nom, e.prenom";
+// Tri par nom
+$sql .= " ORDER BY e.nom, e.prenom";
 $eleves_result = $conn->query($sql);
 
 // Message de statut pour les opérations
@@ -39,11 +42,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $mp = $_POST['mp'];
     $id_classe = $_POST['id_classe'];
 
+    // Récupérer les anciennes valeurs pour comparer les changements
+    $old_values_sql = "SELECT nom, prenom, email, login, mp, id_classe FROM eleves WHERE id_eleve = ?";
+    $old_values_stmt = $conn->prepare($old_values_sql);
+    $old_values_stmt->bind_param("i", $id_eleve);
+    $old_values_stmt->execute();
+    $old_values_result = $old_values_stmt->get_result();
+    $old_values = $old_values_result->fetch_assoc();
+
     $update_sql = "UPDATE eleves SET nom = ?, prenom = ?, email = ?, login = ?, mp = ?, id_classe = ? WHERE id_eleve = ?";
     $update_stmt = $conn->prepare($update_sql);
     $update_stmt->bind_param("sssssii", $nom, $prenom, $email, $login, $mp, $id_classe, $id_eleve);
 
     if ($update_stmt->execute()) {
+        // Préparer la liste des changements
+        $changes = [];
+        if ($old_values['nom'] != $nom) {
+            $changes[] = "الاسم: {$old_values['nom']} → {$nom}";
+        }
+        if ($old_values['prenom'] != $prenom) {
+            $changes[] = "اللقب: {$old_values['prenom']} → {$prenom}";
+        }
+        if ($old_values['email'] != $email) {
+            $changes[] = "البريد الإلكتروني: {$old_values['email']} → {$email}";
+        }
+        if ($old_values['login'] != $login) {
+            $changes[] = "اسم المستخدم: {$old_values['login']} → {$login}";
+        }
+        if ($old_values['mp'] != $mp) {
+            $changes[] = "كلمة المرور: تم تغييرها";
+        }
+        if ($old_values['id_classe'] != $id_classe) {
+            $classe_sql = "SELECT nom_classe FROM classes WHERE id_classe = ?";
+            $classe_stmt = $conn->prepare($classe_sql);
+            $classe_stmt->bind_param("i", $id_classe);
+            $classe_stmt->execute();
+            $new_classe = $classe_stmt->get_result()->fetch_assoc()['nom_classe'];
+            
+            $old_classe_sql = "SELECT nom_classe FROM classes WHERE id_classe = ?";
+            $old_classe_stmt = $conn->prepare($old_classe_sql);
+            $old_classe_stmt->bind_param("i", $old_values['id_classe']);
+            $old_classe_stmt->execute();
+            $old_classe = $old_classe_stmt->get_result()->fetch_assoc()['nom_classe'];
+            
+            $changes[] = "القسم: {$old_classe} → {$new_classe}";
+        }
+
+        // Envoyer l'email si des changements ont été effectués
+        if (!empty($changes)) {
+            require_once 'send_email.php';
+            sendModificationEmail($email, $nom, $prenom, $changes, $mp);
+        }
+
         $status_message = 'تم تحديث معلومات الطالب بنجاح';
         $status_type = 'success';
     } else {
@@ -82,6 +132,12 @@ if (isset($_GET['message'])) {
     $status_message = $_GET['message'];
     $status_type = isset($_GET['type']) ? $_GET['type'] : 'info';
 }
+
+// Fonction pour générer une couleur aléatoire cohérente basée sur un texte
+function getColorFromText($text) {
+    $hash = md5($text);
+    return '#' . substr($hash, 0, 6);
+}
 ?>
 
 <!DOCTYPE html>
@@ -106,6 +162,8 @@ if (isset($_GET['message'])) {
             --border-radius: 6px;
             --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --excel-color: #217346;
+            --excel-color-dark: #185a36;
         }
 
         * {
@@ -751,6 +809,45 @@ if (isset($_GET['message'])) {
             background-color: var(--primary-color);
             color: white;
         }
+
+        /* Bouton Excel amélioré */
+        .excel-export-container {
+            margin-bottom: 20px;
+        }
+
+        .btn-excel {
+            background: linear-gradient(135deg, var(--excel-color), var(--excel-color-dark));
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 10px 20px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-excel:hover {
+            background: linear-gradient(135deg, var(--excel-color-dark), #0e4123);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-excel i {
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .btn-excel {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -813,6 +910,17 @@ if (isset($_GET['message'])) {
             </div>
         </div>
 
+        <!-- Bouton Excel amélioré -->
+        <div class="excel-export-container">
+            <form method="GET" action="export_excel.php">
+                <input type="hidden" name="classe_id" value="<?= $classe_filter ?>">
+                <button type="submit" name="export" class="btn-excel">
+                    <i class="fas fa-file-excel"></i>
+                    <span>تصدير إلى Excel</span>
+                </button>
+            </form>
+        </div>
+
         <div class="students-card">
             <div class="card-header">
             <span>قائمة التلاميذ</span>
@@ -834,8 +942,11 @@ if (isset($_GET['message'])) {
                                 <tr>
                                     <td>
                                         <div class="student-name">
-                                            <div class="student-avatar" style="background-color: <?php echo '#' . substr(md5($eleve['nom']), 0, 6); ?>">
-                                                <?php echo $eleve['premiere_lettre']; ?>
+                                            <div class="student-avatar" style="background-color: <?php echo getColorFromText($eleve['nom'] . $eleve['prenom']); ?>">
+                                                <?php 
+                                                    // Utiliser un icône d'utilisateur au lieu d'une lettre
+                                                    echo '<i class="fas fa-user"></i>';
+                                                ?>
                                             </div>
                                             <?php echo htmlspecialchars($eleve['nom'] . ' ' . $eleve['prenom']); ?>
                                         </div>
@@ -868,6 +979,7 @@ if (isset($_GET['message'])) {
                             إضافة تلميذ جديد
                         </a>
                     </div>
+                  
                 <?php endif; ?>
             </div>
         </div>

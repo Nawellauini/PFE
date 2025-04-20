@@ -1,4 +1,18 @@
-<?php include 'db_config.php'; ?>
+<?php
+include 'db_config.php';
+
+// Vérifier si les colonnes login et mot_de_passe existent dans la table demandes_inscription
+$check_columns = $conn->query("SHOW COLUMNS FROM demandes_inscription LIKE 'login'");
+if ($check_columns->num_rows == 0) {
+    $conn->query("ALTER TABLE demandes_inscription ADD COLUMN login VARCHAR(50) NULL");
+}
+
+$check_columns = $conn->query("SHOW COLUMNS FROM demandes_inscription LIKE 'mot_de_passe'");
+if ($check_columns->num_rows == 0) {
+    $conn->query("ALTER TABLE demandes_inscription ADD COLUMN mot_de_passe VARCHAR(255) NULL");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -637,6 +651,20 @@
             text-align: center;
         }
         
+        /* Password Toggle */
+        .password-container {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--gray-color);
+        }
+        
         /* Responsive */
         @media (max-width: 992px) {
             .features-grid {
@@ -759,6 +787,10 @@
                 <div class="step-number">3</div>
                 <div class="step-label">معلومات الاتصال</div>
             </div>
+            <div class="step" id="step4-indicator">
+                <div class="step-number">4</div>
+                <div class="step-label">معلومات الحساب</div>
+            </div>
         </div>
         
         <div class="success-message" id="successMessage">
@@ -799,30 +831,27 @@
                     <div class="form-group">
                         <label for="classe_demande" class="form-label">الصف المطلوب</label>
                         <select id="classe_demande" name="classe_demande" class="form-select" required>
-    <option value="" disabled selected>اختر الصف</option>
-    <?php
-    // Connexion à la base de données (à adapter selon ta config)
-    $conn = new mysqli("localhost", "root", "", "u504721134_formation");
-    if ($conn->connect_error) {
-        die("Erreur de connexion : " . $conn->connect_error);
-    }
+                            <option value="" disabled selected>اختر الصف</option>
+                            <?php
+                            // Connexion à la base de données (à adapter selon ta config)
+                            $conn = new mysqli("localhost", "root", "", "u504721134_formation");
+                            if ($conn->connect_error) {
+                                die("Erreur de connexion : " . $conn->connect_error);
+                            }
 
-    // Requête pour récupérer les classes
-    $sql = "SELECT id_classe, nom_classe FROM classes";
-    $result = $conn->query($sql);
+                            // Requête pour récupérer les classes
+                            $sql = "SELECT id_classe, nom_classe FROM classes";
+                            $result = $conn->query($sql);
 
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo '<option value="' . htmlspecialchars($row['id_classe']) . '">' . htmlspecialchars($row['nom_classe']) . '</option>';
-        }
-    } else {
-        echo '<option disabled>Aucune classe trouvée</option>';
-    }
-
-    $conn->close();
-    ?>
-</select>
-
+                            if ($result && $result->num_rows > 0) {
+                                while ($row = $result->fetch_assoc()) {
+                                    echo '<option value="' . htmlspecialchars($row['id_classe']) . '">' . htmlspecialchars($row['nom_classe']) . '</option>';
+                                }
+                            } else {
+                                echo '<option disabled>Aucune classe trouvée</option>';
+                            }
+                            ?>
+                        </select>
                         <div class="error-message">يرجى اختيار الصف</div>
                     </div>
                     
@@ -854,6 +883,35 @@
                     <div class="form-group">
                         <label for="message" class="form-label">رسالة (اختياري)</label>
                         <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="أي معلومات إضافية ترغب في مشاركتها معنا"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Account Information (New) -->
+                <div class="form-step" id="step4">
+                    <div class="form-group">
+                        <label for="mot_de_passe" class="form-label">كلمة المرور</label>
+                        <div class="password-container">
+                            <input type="password" id="mot_de_passe" name="mot_de_passe" class="form-input" required minlength="8">
+                            <i class="fas fa-eye toggle-password" onclick="togglePassword('mot_de_passe')"></i>
+                        </div>
+                        <div class="error-message">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</div>
+                        <small class="form-text text-muted">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm_mot_de_passe" class="form-label">تأكيد كلمة المرور</label>
+                        <div class="password-container">
+                            <input type="password" id="confirm_mot_de_passe" name="confirm_mot_de_passe" class="form-input" required minlength="8">
+                            <i class="fas fa-eye toggle-password" onclick="togglePassword('confirm_mot_de_passe')"></i>
+                        </div>
+                        <div class="error-message">كلمات المرور غير متطابقة</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <p class="form-text text-muted">
+                            <i class="fas fa-info-circle"></i>
+                            سيتم إنشاء اسم المستخدم تلقائيًا بناءً على اسمك. يمكنك استخدامه لتسجيل الدخول بعد قبول طلبك.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1010,16 +1068,18 @@
     
     // Multi-step Form
     let currentStep = 1;
-    const totalSteps = 3;
+    const totalSteps = 4; // Updated to 4 steps
     
     // DOM Elements
     const form = document.getElementById('registrationForm');
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
     const step3 = document.getElementById('step3');
+    const step4 = document.getElementById('step4'); // New step
     const step1Indicator = document.getElementById('step1-indicator');
     const step2Indicator = document.getElementById('step2-indicator');
     const step3Indicator = document.getElementById('step3-indicator');
+    const step4Indicator = document.getElementById('step4-indicator'); // New indicator
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const submitBtn = document.getElementById('submitBtn');
@@ -1031,11 +1091,13 @@
         step1.classList.remove('active');
         step2.classList.remove('active');
         step3.classList.remove('active');
+        step4.classList.remove('active'); // New step
         
         // Update indicators
         step1Indicator.classList.remove('active', 'completed');
         step2Indicator.classList.remove('active', 'completed');
         step3Indicator.classList.remove('active', 'completed');
+        step4Indicator.classList.remove('active', 'completed'); // New indicator
         
         // Show current step
         if (stepNumber === 1) {
@@ -1056,6 +1118,15 @@
             step3Indicator.classList.add('active');
             step1Indicator.classList.add('completed');
             step2Indicator.classList.add('completed');
+            prevBtn.style.display = 'block';
+            nextBtn.style.display = 'block';
+            submitBtn.style.display = 'none';
+        } else if (stepNumber === 4) { // New step
+            step4.classList.add('active');
+            step4Indicator.classList.add('active');
+            step1Indicator.classList.add('completed');
+            step2Indicator.classList.add('completed');
+            step3Indicator.classList.add('completed');
             prevBtn.style.display = 'block';
             nextBtn.style.display = 'none';
             submitBtn.style.display = 'block';
@@ -1123,6 +1194,24 @@
             } else {
                 telephone.classList.remove('error');
             }
+        } else if (stepNumber === 4) { // New validation for step 4
+            // Validate step 4 fields
+            const password = document.getElementById('mot_de_passe');
+            const confirmPassword = document.getElementById('confirm_mot_de_passe');
+            
+            if (password.value.length < 8) {
+                password.classList.add('error');
+                isValid = false;
+            } else {
+                password.classList.remove('error');
+            }
+            
+            if (confirmPassword.value !== password.value) {
+                confirmPassword.classList.add('error');
+                isValid = false;
+            } else {
+                confirmPassword.classList.remove('error');
+            }
         }
         
         return isValid;
@@ -1146,16 +1235,23 @@
             e.preventDefault();
             return;
         }
-        
-        // For demo purposes, show success message instead of submitting
-        // Comment this section when using actual form submission
-        /*
-        e.preventDefault();
-        form.style.display = 'none';
-        successMessage.style.display = 'block';
-        window.scrollTo({ top: document.getElementById('registration-form').offsetTop, behavior: 'smooth' });
-        */
     });
+    
+    // Toggle password visibility
+    function togglePassword(inputId) {
+        const passwordInput = document.getElementById(inputId);
+        const toggleIcon = passwordInput.nextElementSibling;
+        
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        }
+    }
     
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

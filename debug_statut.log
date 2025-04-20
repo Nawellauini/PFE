@@ -130,3 +130,518 @@
 [2025-04-07 17:37:35] Résultat méthode 2: Succès
 [2025-04-07 17:37:35] Méthode 3 (valeur simple): Succès
 [2025-04-07 17:37:39] Email envoyé avec succès
+[2025-04-11 16:28:36] Début du traitement
+[2025-04-11 16:28:36] ID: 10, Statut: مقبول
+[2025-04-11 16:28:36] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 10
+[2025-04-11 16:28:36] Candidat trouvé: makiya laouini, Email: nawellaouini210@gmail.com, Matière: اللغة العربية
+[2025-04-11 16:28:36] Résultat mise à jour avec requête préparée: Succès
+[2025-04-11 16:28:36] Statut après mise à jour: 
+[2025-04-11 16:28:39] Email envoyé avec succès
+[2025-04-11 16:29:59] Début du traitement
+[2025-04-11 16:29:59] ID: 9, Statut: مرفوض
+[2025-04-11 16:29:59] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 9
+[2025-04-11 16:29:59] Candidat trouvé: norhene laouini, Email: nawellaouini210@gmail.com, Matière: التربية الإسلامية
+[2025-04-11 16:29:59] Résultat mise à jour avec requête préparée: Succès
+[2025-04-11 16:29:59] Statut après mise à jour: 
+[2025-04-11 16:30:01] Email envoyé avec succès
+[2025-04-11 16:31:00] Début du traitement
+[2025-04-11 16:31:00] ID: 10, Statut: مقبول
+[2025-04-11 16:31:00] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 10
+[2025-04-11 16:31:00] Candidat trouvé: makiya laouini, Email: nawellaouini210@gmail.com, Matière: اللغة العربية
+[2025-04-11 16:31:00] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 10
+[2025-04-11 16:31:00] Mise à jour réussie avec la méthode 1
+[2025-04-11 16:31:00] Statut après mise à jour: 
+[2025-04-11 16:31:00] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-11 16:31:00] Résultat méthode 2: Succès
+[2025-04-11 16:31:00] Méthode 3 (valeur simple): Succès
+[2025-04-11 16:31:03] Email envoyé avec succès
+[2025-04-11 16:36:59] Début du traitement
+[2025-04-11 16:36:59] ID: 10, Statut: مقبول
+[2025-04-11 16:36:59] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 10
+[2025-04-11 16:36:59] Candidat trouvé: makiya laouini, Email: nawellaouini210@gmail.com, Matière: اللغة العربية
+[2025-04-11 16:36:59] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 10
+[2025-04-11 16:36:59] Mise à jour réussie avec la méthode 1
+[2025-04-11 16:36:59] Statut après mise à jour: 
+[2025-04-11 16:36:59] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-11 16:36:59] Résultat méthode 2: Succès
+[2025-04-11 16:36:59] Méthode 3 (valeur simple): Succès
+[2025-04-11 16:37:01] Email envoyé avec succès
+[2025-04-11 16:38:02] Début du traitement
+[2025-04-11 16:38:02] ID: 8, Statut: مرفوض
+[2025-04-11 16:38:02] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 8
+[2025-04-11 16:38:02] Candidat trouvé: nawel laouini, Email: nawellaouini210@gmail.com, Matière: الرياضيات
+[2025-04-11 16:38:02] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مرفوض' WHERE id = 8
+[2025-04-11 16:38:02] Mise à jour réussie avec la méthode 1
+[2025-04-11 16:38:02] Statut après mise à jour: 
+[2025-04-11 16:38:02] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-11 16:38:02] Résultat méthode 2: Succès
+[2025-04-11 16:38:02] Méthode 3 (valeur simple): Succès
+[2025-04-11 16:38:04] Email envoyé avec succès
+[2025-04-11 16:39:27] Début du traitement
+[2025-04-11 16:39:27] ID: 9, Statut: مقبول
+[2025-04-11 16:39:27] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 9
+[2025-04-11 16:39:27] Candidat trouvé: norhene laouini, Email: nawellaouini210@gmail.com, Matière: التربية الإسلامية
+[2025-04-11 16:39:27] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 9
+[2025-04-11 16:39:27] Mise à jour réussie avec la méthode 1
+[2025-04-11 16:39:27] Statut après mise à jour: 
+[2025-04-11 16:39:27] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-11 16:39:27] Résultat méthode 2: Succès
+[2025-04-11 16:39:27] Méthode 3 (valeur simple): Succès
+[2025-04-11 16:39:29] Email envoyé avec succès
+[2025-04-11 16:39:49] Début du traitement
+[2025-04-11 16:39:49] ID: 9, Statut: مقبول
+[2025-04-11 16:39:49] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 9
+[2025-04-11 16:39:49] Candidat trouvé: norhene laouini, Email: nawellaouini210@gmail.com, Matière: التربية الإسلامية
+[2025-04-11 16:39:49] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 9
+[2025-04-11 16:39:49] Mise à jour réussie avec la méthode 1
+[2025-04-11 16:39:49] Statut après mise à jour: 
+[2025-04-11 16:39:49] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-11 16:39:49] Résultat méthode 2: Succès
+[2025-04-11 16:39:49] Méthode 3 (valeur simple): Succès
+[2025-04-11 16:39:51] Email envoyé avec succès
+[2025-04-11 16:40:04] Début du traitement
+[2025-04-11 16:40:04] ID: 9, Statut: مقبول
+[2025-04-11 16:40:04] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 9
+[2025-04-11 16:40:04] Candidat trouvé: norhene laouini, Email: nawellaouini210@gmail.com, Matière: التربية الإسلامية
+[2025-04-11 16:40:04] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 9
+[2025-04-11 16:40:04] Mise à jour réussie avec la méthode 1
+[2025-04-11 16:40:04] Statut après mise à jour: 
+[2025-04-11 16:40:04] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-11 16:40:04] Résultat méthode 2: Succès
+[2025-04-11 16:40:04] Méthode 3 (valeur simple): Succès
+[2025-04-11 16:40:07] Email envoyé avec succès
+[2025-04-12 14:07:03] Début du traitement
+[2025-04-12 14:07:03] ID: 10, Statut: مقبول
+[2025-04-12 14:07:03] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 10
+[2025-04-12 14:07:03] Candidat trouvé: makiya laouini, Email: nawellaouini210@gmail.com, Matière: اللغة العربية
+[2025-04-12 14:07:03] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 10
+[2025-04-12 14:07:03] Mise à jour réussie avec la méthode 1
+[2025-04-12 14:07:03] Statut après mise à jour: 
+[2025-04-12 14:07:03] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 14:07:03] Résultat méthode 2: Succès
+[2025-04-12 14:07:03] Méthode 3 (valeur simple): Succès
+[2025-04-12 14:07:06] Email envoyé avec succès
+[2025-04-12 14:31:41] Début du traitement
+[2025-04-12 14:31:41] ID: 11, Statut: مقبول
+[2025-04-12 14:31:41] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 11
+[2025-04-12 14:31:41] Candidat trouvé: ben mbarek mohammed, Email: mohammed@gmail.com, Matière: التربية الإسلامية
+[2025-04-12 14:31:41] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 11
+[2025-04-12 14:31:41] Mise à jour réussie avec la méthode 1
+[2025-04-12 14:31:41] Statut après mise à jour: 
+[2025-04-12 14:31:41] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 14:31:41] Résultat méthode 2: Succès
+[2025-04-12 14:31:41] Méthode 3 (valeur simple): Succès
+[2025-04-12 14:31:47] Email envoyé avec succès
+[2025-04-12 14:48:17] Début du traitement
+[2025-04-12 14:48:17] ID: 13, Statut: مقبول
+[2025-04-12 14:48:17] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 13
+[2025-04-12 14:48:17] Candidat trouvé: lolo lam, Email: nawellaouini210@gmail.com, Matière: التاريخ والجغرافيا
+[2025-04-12 14:48:17] Résultat mise à jour avec requête préparée: Succès
+[2025-04-12 14:48:17] Statut après mise à jour: 
+[2025-04-12 14:48:17] Insertion du professeur: Succès
+[2025-04-12 14:48:21] Email envoyé avec succès
+[2025-04-12 14:53:29] Début du traitement
+[2025-04-12 14:53:29] ID: 13, Statut: مقبول
+[2025-04-12 14:53:29] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 13
+[2025-04-12 14:53:29] Candidat trouvé: lolo lam, Email: nawellaouini210@gmail.com, Matière: التاريخ والجغرافيا
+[2025-04-12 14:53:29] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 13
+[2025-04-12 14:53:29] Mise à jour réussie avec la méthode 1
+[2025-04-12 14:53:29] Statut après mise à jour: 
+[2025-04-12 14:53:29] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 14:53:29] Résultat méthode 2: Succès
+[2025-04-12 14:53:29] Méthode 3 (valeur simple): Succès
+[2025-04-12 14:53:34] Email envoyé avec succès
+[2025-04-12 15:06:31] Début du traitement
+[2025-04-12 15:06:31] ID: 14, Statut: مقبول
+[2025-04-12 15:06:31] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 14
+[2025-04-12 15:06:31] Candidat trouvé: aouini nourchen, Email: nawellaouini210@gmail.com, Matière: التربية البدنية, Login: , Mot de passe: [MASQUÉ]
+[2025-04-12 15:06:31] Résultat mise à jour avec requête préparée: Succès
+[2025-04-12 15:06:31] Statut après mise à jour: 
+[2025-04-12 15:06:31] Le professeur avec l'email nawellaouini210@gmail.com existe déjà dans la table professeurs
+[2025-04-12 15:06:35] Email envoyé avec succès
+[2025-04-12 15:06:58] Début du traitement
+[2025-04-12 15:06:58] ID: 14, Statut: مقبول
+[2025-04-12 15:06:58] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 14
+[2025-04-12 15:06:58] Candidat trouvé: aouini nourchen, Email: nawellaouini210@gmail.com, Matière: التربية البدنية
+[2025-04-12 15:06:58] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 14
+[2025-04-12 15:06:58] Mise à jour réussie avec la méthode 1
+[2025-04-12 15:06:58] Statut après mise à jour: 
+[2025-04-12 15:06:58] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 15:06:58] Résultat méthode 2: Succès
+[2025-04-12 15:06:58] Méthode 3 (valeur simple): Succès
+[2025-04-12 15:07:00] Email envoyé avec succès
+[2025-04-12 15:07:46] Début du traitement
+[2025-04-12 15:07:46] ID: 14, Statut: مقبول
+[2025-04-12 15:07:46] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 14
+[2025-04-12 15:07:46] Candidat trouvé: aouini nourchen, Email: nawellaouini210@gmail.com, Matière: التربية البدنية
+[2025-04-12 15:07:46] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 14
+[2025-04-12 15:07:46] Mise à jour réussie avec la méthode 1
+[2025-04-12 15:07:46] Statut après mise à jour: 
+[2025-04-12 15:07:46] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 15:07:46] Résultat méthode 2: Succès
+[2025-04-12 15:07:46] Méthode 3 (valeur simple): Succès
+[2025-04-12 15:07:48] Email envoyé avec succès
+[2025-04-12 15:14:44] Début du traitement
+[2025-04-12 15:14:44] ID: 13, Statut: مقبول
+[2025-04-12 15:14:44] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 13
+[2025-04-12 15:14:44] Candidat trouvé: lolo lam, Email: nawellaouini210@gmail.com, Matière: التاريخ والجغرافيا
+[2025-04-12 15:14:44] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 13
+[2025-04-12 15:14:44] Mise à jour réussie avec la méthode 1
+[2025-04-12 15:14:44] Statut après mise à jour: 
+[2025-04-12 15:14:44] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 15:14:44] Résultat méthode 2: Succès
+[2025-04-12 15:14:44] Méthode 3 (valeur simple): Succès
+[2025-04-12 15:14:46] Email envoyé avec succès
+[2025-04-12 15:17:20] Début du traitement
+[2025-04-12 15:17:20] ID: 15, Statut: مقبول
+[2025-04-12 15:17:20] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 15
+[2025-04-12 15:17:20] Candidat trouvé: matoog bassema, Email: nawellaouini210@gmail.com, Matière: التاريخ والجغرافيا
+[2025-04-12 15:17:20] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 15
+[2025-04-12 15:17:20] Mise à jour réussie avec la méthode 1
+[2025-04-12 15:17:20] Statut après mise à jour: 
+[2025-04-12 15:17:20] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 15:17:20] Résultat méthode 2: Succès
+[2025-04-12 15:17:20] Méthode 3 (valeur simple): Succès
+[2025-04-12 15:17:25] Email envoyé avec succès
+[2025-04-12 15:37:35] Début du traitement
+[2025-04-12 15:37:35] ID: 16, Statut: مقبول
+[2025-04-12 15:37:35] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 16
+[2025-04-12 15:37:35] Candidat trouvé: laouini soso, Email: nawellaouini210@gmail.com, Matière: العلوم, Login: , Mot de passe présent: Non
+[2025-04-12 15:37:35] Résultat mise à jour avec requête préparée: Succès
+[2025-04-12 15:37:35] Statut après mise à jour: 
+[2025-04-12 15:37:35] Login généré et mis à jour: lsoso
+[2025-04-12 15:37:35] Insertion du professeur: Succès
+[2025-04-12 15:37:38] Email envoyé avec succès
+[2025-04-12 15:38:19] Début du traitement
+[2025-04-12 15:38:19] ID: 16, Statut: مقبول
+[2025-04-12 15:38:19] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 16
+[2025-04-12 15:38:19] Candidat trouvé: laouini soso, Email: nawellaouini210@gmail.com, Matière: العلوم
+[2025-04-12 15:38:19] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 16
+[2025-04-12 15:38:19] Mise à jour réussie avec la méthode 1
+[2025-04-12 15:38:19] Statut après mise à jour: 
+[2025-04-12 15:38:19] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 15:38:19] Résultat méthode 2: Succès
+[2025-04-12 15:38:19] Méthode 3 (valeur simple): Succès
+[2025-04-12 15:38:22] Email envoyé avec succès
+[2025-04-12 15:50:11] Début du traitement
+[2025-04-12 15:50:11] ID: 17, Statut: مقبول
+[2025-04-12 15:50:11] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 17
+[2025-04-12 15:50:11] Candidat trouvé: monir nourhen, Email: nawellaouini210@gmail.com, Matière: 
+[2025-04-12 15:50:11] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 17
+[2025-04-12 15:50:11] Mise à jour réussie avec la méthode 1
+[2025-04-12 15:50:11] Statut après mise à jour: 
+[2025-04-12 15:50:11] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 15:50:11] Résultat méthode 2: Succès
+[2025-04-12 15:50:11] Méthode 3 (valeur simple): Succès
+[2025-04-12 15:50:13] Email envoyé avec succès
+[2025-04-12 16:12:12] Début du traitement
+[2025-04-12 16:12:12] ID: 18, Statut: مقبول
+[2025-04-12 16:12:12] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 18
+[2025-04-12 16:12:12] Candidat trouvé: ben mbarek ben matoog, Email: nawellaouini210@gmail.com, Matière: , Login: bbenmatoog, Mot de passe présent: Oui
+[2025-04-12 16:12:12] Résultat mise à jour avec requête préparée: Succès
+[2025-04-12 16:12:12] Statut après mise à jour: 
+[2025-04-12 16:12:12] Le professeur avec l'email nawellaouini210@gmail.com existe déjà dans la table professeurs
+[2025-04-12 16:12:14] Email envoyé avec succès
+[2025-04-12 16:12:41] Début du traitement
+[2025-04-12 16:12:41] ID: 18, Statut: مقبول
+[2025-04-12 16:12:41] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 18
+[2025-04-12 16:12:41] Candidat trouvé: ben mbarek ben matoog, Email: nawellaouini210@gmail.com, Matière: 
+[2025-04-12 16:12:41] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 18
+[2025-04-12 16:12:41] Mise à jour réussie avec la méthode 1
+[2025-04-12 16:12:41] Statut après mise à jour: 
+[2025-04-12 16:12:41] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 16:12:41] Résultat méthode 2: Succès
+[2025-04-12 16:12:41] Méthode 3 (valeur simple): Succès
+[2025-04-12 16:12:43] Email envoyé avec succès
+[2025-04-12 16:16:11] Début du traitement
+[2025-04-12 16:16:11] ID: 20, Statut: مقبول
+[2025-04-12 16:16:11] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 20
+[2025-04-12 16:16:11] Candidat trouvé: laouini sandre, Email: nawellaouini210@gmail.com, Matière: الفنون
+[2025-04-12 16:16:11] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 20
+[2025-04-12 16:16:11] Mise à jour réussie avec la méthode 1
+[2025-04-12 16:16:11] Statut après mise à jour: 
+[2025-04-12 16:16:11] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 16:16:11] Résultat méthode 2: Succès
+[2025-04-12 16:16:11] Méthode 3 (valeur simple): Succès
+[2025-04-12 16:16:14] Email envoyé avec succès
+[2025-04-12 16:30:14] Début du traitement
+[2025-04-12 16:30:14] ID: 23, Statut: مقبول
+[2025-04-12 16:30:14] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 23
+[2025-04-12 16:30:14] Candidat trouvé: ben mbarek salah, Email: nawellaouini210@gmail.com, Matière: التاريخ والجغرافيا
+[2025-04-12 16:30:14] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 23
+[2025-04-12 16:30:14] Mise à jour réussie avec la méthode 1
+[2025-04-12 16:30:14] Statut après mise à jour: 
+[2025-04-12 16:30:14] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 16:30:14] Résultat méthode 2: Succès
+[2025-04-12 16:30:14] Méthode 3 (valeur simple): Succès
+[2025-04-12 16:30:16] Email envoyé avec succès
+[2025-04-12 16:35:29] Début du traitement
+[2025-04-12 16:35:29] ID: 24, Statut: مقبول
+[2025-04-12 16:35:29] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 24
+[2025-04-12 16:35:29] Candidat trouvé: ben mbarek hama, Email: nawellaouini210@gmail.com, Matière: التربية البدنية
+[2025-04-12 16:35:29] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 24
+[2025-04-12 16:35:29] Mise à jour réussie avec la méthode 1
+[2025-04-12 16:35:29] Statut après mise à jour: 
+[2025-04-12 16:35:29] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 16:35:29] Résultat méthode 2: Succès
+[2025-04-12 16:35:29] Méthode 3 (valeur simple): Succès
+[2025-04-12 16:35:32] Email envoyé avec succès
+[2025-04-12 16:38:34] Début du traitement
+[2025-04-12 16:38:34] ID: 25, Statut: مقبول
+[2025-04-12 16:38:34] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 25
+[2025-04-12 16:38:34] Candidat trouvé: laouini nono, Email: nawellaouini210@gmail.com, Matière: الرياضيات
+[2025-04-12 16:38:34] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 25
+[2025-04-12 16:38:34] Mise à jour réussie avec la méthode 1
+[2025-04-12 16:38:34] Statut après mise à jour: 
+[2025-04-12 16:38:34] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 16:38:34] Résultat méthode 2: Succès
+[2025-04-12 16:38:34] Méthode 3 (valeur simple): Succès
+[2025-04-12 16:38:37] Email envoyé avec succès
+[2025-04-12 16:43:32] Début du traitement
+[2025-04-12 16:43:32] ID: 26, Statut: مقبول
+[2025-04-12 16:43:32] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 26
+[2025-04-12 16:43:32] Candidat trouvé: norhene handa, Email: admin@gmail.com, Matière: اللغة العربية
+[2025-04-12 16:43:32] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 26
+[2025-04-12 16:43:32] Mise à jour réussie avec la méthode 1
+[2025-04-12 16:43:32] Statut après mise à jour: 
+[2025-04-12 16:43:32] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 16:43:32] Résultat méthode 2: Succès
+[2025-04-12 16:43:32] Méthode 3 (valeur simple): Succès
+[2025-04-12 16:43:34] Email envoyé avec succès
+[2025-04-12 16:47:10] Début du traitement
+[2025-04-12 16:47:10] ID: 27, Statut: مقبول
+[2025-04-12 16:47:10] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 27
+[2025-04-12 16:47:10] Candidat trouvé: laouini new, Email: admin@gmail.com, Matière: اللغة الإنجليزية
+[2025-04-12 16:47:10] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 27
+[2025-04-12 16:47:10] Mise à jour réussie avec la méthode 1
+[2025-04-12 16:47:10] Statut après mise à jour: 
+[2025-04-12 16:47:10] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 16:47:10] Résultat méthode 2: Succès
+[2025-04-12 16:47:10] Méthode 3 (valeur simple): Succès
+[2025-04-12 16:47:13] Email envoyé avec succès
+[2025-04-12 16:50:38] Début du traitement
+[2025-04-12 16:50:38] ID: 28, Statut: مقبول
+[2025-04-12 16:50:38] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 28
+[2025-04-12 16:50:38] Candidat trouvé: ben matog malek, Email: admin@gmail.com, Matière: اللغة العربية
+[2025-04-12 16:50:38] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 28
+[2025-04-12 16:50:38] Mise à jour réussie avec la méthode 1
+[2025-04-12 16:50:38] Statut après mise à jour: 
+[2025-04-12 16:50:38] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 16:50:38] Résultat méthode 2: Succès
+[2025-04-12 16:50:38] Méthode 3 (valeur simple): Succès
+[2025-04-12 16:50:41] Email envoyé avec succès
+[2025-04-12 16:54:25] Début du traitement
+[2025-04-12 16:54:25] ID: 27, Statut: مقبول
+[2025-04-12 16:54:25] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 27
+[2025-04-12 16:54:25] Candidat trouvé: laouini new, Email: admin@gmail.com, Matière: اللغة الإنجليزية
+[2025-04-12 16:54:25] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 27
+[2025-04-12 16:54:25] Mise à jour réussie avec la méthode 1
+[2025-04-12 16:54:25] Statut après mise à jour: 
+[2025-04-12 16:54:25] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 16:54:25] Résultat méthode 2: Succès
+[2025-04-12 16:54:25] Méthode 3 (valeur simple): Succès
+[2025-04-12 16:54:30] Email envoyé avec succès
+[2025-04-12 16:54:51] Début du traitement
+[2025-04-12 16:54:51] ID: 26, Statut: مقبول
+[2025-04-12 16:54:51] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 26
+[2025-04-12 16:54:51] Candidat trouvé: norhene handa, Email: admin@gmail.com, Matière: اللغة العربية
+[2025-04-12 16:54:51] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 26
+[2025-04-12 16:54:51] Mise à jour réussie avec la méthode 1
+[2025-04-12 16:54:51] Statut après mise à jour: 
+[2025-04-12 16:54:51] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 16:54:51] Résultat méthode 2: Succès
+[2025-04-12 16:54:51] Méthode 3 (valeur simple): Succès
+[2025-04-12 16:54:53] Email envoyé avec succès
+[2025-04-12 17:00:29] Début du traitement
+[2025-04-12 17:00:29] ID: 28, Statut: مقبول
+[2025-04-12 17:00:29] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 28
+[2025-04-12 17:00:29] Candidat trouvé: ben matog malek, Email: admin@gmail.com, Matière: اللغة العربية
+[2025-04-12 17:00:29] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 28
+[2025-04-12 17:00:29] Mise à jour réussie avec la méthode 1
+[2025-04-12 17:00:29] Statut après mise à jour: 
+[2025-04-12 17:00:29] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 17:00:29] Résultat méthode 2: Succès
+[2025-04-12 17:00:29] Méthode 3 (valeur simple): Succès
+[2025-04-12 17:00:33] Email envoyé avec succès
+[2025-04-12 17:03:27] Début du traitement
+[2025-04-12 17:03:27] ID: 29, Statut: مقبول
+[2025-04-12 17:03:27] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 29
+[2025-04-12 17:03:27] Candidat trouvé: ben mbarek miko, Email: admin@gmail.com, Matière: الرياضيات
+[2025-04-12 17:03:27] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 29
+[2025-04-12 17:03:27] Mise à jour réussie avec la méthode 1
+[2025-04-12 17:03:27] Statut après mise à jour: 
+[2025-04-12 17:03:27] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 17:03:27] Résultat méthode 2: Succès
+[2025-04-12 17:03:27] Méthode 3 (valeur simple): Succès
+[2025-04-12 17:03:30] Email envoyé avec succès
+[2025-04-12 17:04:58] Début du traitement
+[2025-04-12 17:04:58] ID: 29, Statut: مقبول
+[2025-04-12 17:04:58] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 29
+[2025-04-12 17:04:58] Candidat trouvé: ben mbarek miko, Email: admin@gmail.com, Matière: الرياضيات
+[2025-04-12 17:04:58] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 29
+[2025-04-12 17:04:58] Mise à jour réussie avec la méthode 1
+[2025-04-12 17:04:58] Statut après mise à jour: 
+[2025-04-12 17:04:58] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 17:04:58] Résultat méthode 2: Succès
+[2025-04-12 17:04:58] Méthode 3 (valeur simple): Succès
+[2025-04-12 17:05:01] Email envoyé avec succès
+[2025-04-12 17:07:36] Début du traitement
+[2025-04-12 17:07:36] ID: 27, Statut: مرفوض
+[2025-04-12 17:07:36] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 27
+[2025-04-12 17:07:36] Candidat trouvé: laouini new, Email: admin@gmail.com, Matière: اللغة الإنجليزية, Login: lnew, Mot de passe présent: Oui
+[2025-04-12 17:07:36] Résultat mise à jour avec requête préparée: Succès
+[2025-04-12 17:07:36] Statut après mise à jour: 
+[2025-04-12 17:07:38] Email envoyé avec succès
+[2025-04-12 17:08:19] Début du traitement
+[2025-04-12 17:08:19] ID: 27, Statut: مرفوض
+[2025-04-12 17:08:19] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 27
+[2025-04-12 17:08:19] Candidat trouvé: laouini new, Email: admin@gmail.com, Matière: اللغة الإنجليزية
+[2025-04-12 17:08:19] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مرفوض' WHERE id = 27
+[2025-04-12 17:08:19] Mise à jour réussie avec la méthode 1
+[2025-04-12 17:08:19] Statut après mise à jour: 
+[2025-04-12 17:08:19] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-12 17:08:19] Résultat méthode 2: Succès
+[2025-04-12 17:08:19] Méthode 3 (valeur simple): Succès
+[2025-04-12 17:08:21] Email envoyé avec succès
+[2025-04-13 13:37:15] Début du traitement
+[2025-04-13 13:37:15] ID: 30, Statut: مقبول
+[2025-04-13 13:37:15] Requête SQL pour récupérer les infos: SELECT * FROM candidatures_professeurs WHERE id = 30
+[2025-04-13 13:37:15] Candidat trouvé: laouini Makiya, Email: nawellaouini210@gmail.com, Matière: التربية البدنية
+[2025-04-13 13:37:15] Requête de mise à jour: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 30
+[2025-04-13 13:37:15] Mise à jour réussie avec la méthode 1
+[2025-04-13 13:37:15] Statut après mise à jour: 
+[2025-04-13 13:37:15] La mise à jour n'a pas été enregistrée correctement, essai avec la méthode 2
+[2025-04-13 13:37:15] Résultat méthode 2: Succès
+[2025-04-13 13:37:15] Méthode 3 (valeur simple): Succès
+[2025-04-13 13:37:18] Email envoyé avec succès
+[2025-04-13 13:41:27] === DÉBUT DU TRAITEMENT ===
+[2025-04-13 13:41:27] ID: 31, Statut: مقبول
+[2025-04-13 13:41:27] Requête SQL pour récupérer les infos exécutée
+[2025-04-13 13:41:27] Candidat trouvé: laouini nawel, Email: nawellaouini210@gmail.com, Matière: التربية الإسلامية, Login: lnawel
+[2025-04-13 13:41:27] Matière n'est pas un ID numérique: التربية الإسلامية
+[2025-04-13 13:43:34] === DÉBUT DU TRAITEMENT ===
+[2025-04-13 13:43:34] ID: 31, Statut: مقبول
+[2025-04-13 13:43:34] Exécution de la requête: SELECT * FROM candidatures_professeurs WHERE id = 31
+[2025-04-13 13:43:34] Requête SQL pour récupérer les infos exécutée
+[2025-04-13 13:43:34] Candidat trouvé: laouini nawel, Email: nawellaouini210@gmail.com, Matière: التربية الإسلامية, Login: lnawel
+[2025-04-13 13:43:34] Matière n'est pas un ID numérique: التربية الإسلامية
+[2025-04-13 13:43:34] ERREUR recherche matière: Unknown column 'id' in 'field list'
+[2025-04-13 13:43:34] ERREUR création matière: Cannot add or update a child row: a foreign key constraint fails (`u504721134_formation`.`matieres`, CONSTRAINT `matieres_ibfk_1` FOREIGN KEY (`classe_id`) REFERENCES `classes` (`id_classe`))
+[2025-04-13 13:43:34] Mise à jour du statut: Succès
+[2025-04-13 13:43:34] Tentative de création d'un nouveau professeur pour ID: 31
+[2025-04-13 13:43:34] Colonnes de la table professeurs: id_professeur, nom, prenom, email, matiere_id, login, mot_de_passe, role
+[2025-04-13 13:43:34] SQL d'insertion: INSERT INTO professeurs (nom, prenom, email, matiere_id, login, mot_de_passe, role) 
+                                                  VALUES ('nawel', 'laouini', 'nawellaouini210@gmail.com', 'التربية الإسلامية', 'lnawel', 'admin123', 'مدرس')
+[2025-04-13 13:43:34] Professeur créé avec succès! ID: 29
+[2025-04-13 13:43:34] ERREUR: Impossible de vérifier le nouveau professeur!
+[2025-04-13 13:43:37] Email envoyé avec succès
+[2025-04-13 13:48:30] === DÉBUT DU TRAITEMENT ===
+[2025-04-13 13:48:30] ID: 32, Statut: مقبول
+[2025-04-13 13:48:30] Exécution de la requête: SELECT * FROM candidatures_professeurs WHERE id = 32
+[2025-04-13 13:48:30] Requête SQL pour récupérer les infos exécutée
+[2025-04-13 13:48:30] Candidat trouvé: mohammed  ben mbarek, Email: nawellaouini210@gmail.com, Matière: اللغة الفرنسية, Login: mbenmbarek
+[2025-04-13 13:48:30] Requête de mise à jour du statut: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 32
+[2025-04-13 13:48:30] Mise à jour du statut réussie
+[2025-04-13 13:48:30] Statut après mise à jour: 
+[2025-04-13 13:48:30] Tentative de création d'un nouveau professeur pour ID: 32
+[2025-04-13 13:48:30] Le professeur avec l'email nawellaouini210@gmail.com existe déjà
+[2025-04-13 13:48:32] Email envoyé avec succès
+[2025-04-13 13:51:35] === DÉBUT DU TRAITEMENT ===
+[2025-04-13 13:51:35] ID: 32, Statut: مقبول
+[2025-04-13 13:51:35] Exécution de la requête: SELECT * FROM candidatures_professeurs WHERE id = 32
+[2025-04-13 13:51:35] Requête SQL pour récupérer les infos exécutée
+[2025-04-13 13:51:35] Candidat trouvé: mohammed  ben mbarek, Email: nawellaouini210@gmail.com, Matière: اللغة الفرنسية, Login: mbenmbarek
+[2025-04-13 13:51:35] Matière n'est pas un ID numérique: اللغة الفرنسية
+[2025-04-13 13:51:35] ERREUR recherche matière: Unknown column 'id' in 'field list'
+[2025-04-13 13:51:35] ERREUR création matière: Cannot add or update a child row: a foreign key constraint fails (`u504721134_formation`.`matieres`, CONSTRAINT `matieres_ibfk_1` FOREIGN KEY (`classe_id`) REFERENCES `classes` (`id_classe`))
+[2025-04-13 13:51:35] Mise à jour du statut: Succès
+[2025-04-13 13:51:35] Tentative de création d'un nouveau professeur pour ID: 32
+[2025-04-13 13:51:35] Le professeur avec l'email nawellaouini210@gmail.com existe déjà
+[2025-04-13 13:51:38] Email envoyé avec succès
+[2025-04-13 13:54:11] === DÉBUT DU TRAITEMENT ===
+[2025-04-13 13:54:11] Connexion à la base de données réussie
+[2025-04-13 13:54:11] ID: 33, Statut: مقبول
+[2025-04-13 13:54:11] Requête de mise à jour du statut: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 33
+[2025-04-13 13:54:11] Statut mis à jour avec succès
+[2025-04-13 13:54:11] Statut après mise à jour: 
+[2025-04-13 13:54:11] Informations du candidat: Nom=nourhen, Prénom=laouini, Email=admin@gmail.com, Matière=التربية الإسلامية
+[2025-04-13 13:54:11] Erreur lors de la création de la matière: Cannot add or update a child row: a foreign key constraint fails (`u504721134_formation`.`matieres`, CONSTRAINT `matieres_ibfk_1` FOREIGN KEY (`classe_id`) REFERENCES `classes` (`id_classe`))
+[2025-04-13 13:54:11] Requête d'insertion du professeur: INSERT INTO professeurs (nom, prenom, email, matiere_id, login, mot_de_passe, role) 
+                                    VALUES ('nourhen', 'laouini', 'admin@gmail.com', 1, 'lnourhen', 'admin123', 'مدرس')
+[2025-04-13 13:54:11] Professeur créé avec succès! ID: 30
+[2025-04-13 13:54:11] Vérification réussie - Nouveau professeur créé avec matière_id: 1
+[2025-04-13 13:59:59] === DÉBUT DU TRAITEMENT ===
+[2025-04-13 13:59:59] Connexion à la base de données réussie
+[2025-04-13 13:59:59] ID: 34, Statut: مقبول
+[2025-04-13 13:59:59] Exécution de la requête préparée pour mise à jour du statut
+[2025-04-13 13:59:59] Statut mis à jour avec succès
+[2025-04-13 13:59:59] Statut après mise à jour: 
+[2025-04-13 13:59:59] Informations du candidat: Nom=Makiya, Prénom=laouini, Email=laouininourchen725@gmail.com, Matière=التربية البدنية
+[2025-04-13 14:01:00] === DÉBUT DU TRAITEMENT ===
+[2025-04-13 14:01:00] Connexion à la base de données réussie
+[2025-04-13 14:01:00] ID: 34, Statut: مقبول
+[2025-04-13 14:01:00] Requête de mise à jour du statut: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 34
+[2025-04-13 14:01:00] Statut mis à jour avec succès
+[2025-04-13 14:01:00] Statut après mise à jour: 
+[2025-04-13 14:01:00] Informations du candidat: Nom=Makiya, Prénom=laouini, Email=laouininourchen725@gmail.com, Matière=التربية البدنية
+[2025-04-13 14:01:00] Erreur lors de la création de la matière: Cannot add or update a child row: a foreign key constraint fails (`u504721134_formation`.`matieres`, CONSTRAINT `matieres_ibfk_1` FOREIGN KEY (`classe_id`) REFERENCES `classes` (`id_classe`))
+[2025-04-13 14:01:00] Requête d'insertion du professeur: INSERT INTO professeurs (nom, prenom, email, matiere_id, login, mot_de_passe, role) 
+                                    VALUES ('Makiya', 'laouini', 'laouininourchen725@gmail.com', 1, 'lmakiya', 'admin123', 'مدرس')
+[2025-04-13 14:01:00] Professeur créé avec succès! ID: 31
+[2025-04-13 14:01:00] Vérification réussie - Nouveau professeur créé avec matière_id: 1
+[2025-04-13 14:03:55] === DÉBUT DU TRAITEMENT ===
+[2025-04-13 14:03:55] Connexion à la base de données réussie
+[2025-04-13 14:03:55] ID: 35, Statut: مقبول
+[2025-04-13 14:03:55] Requête de mise à jour du statut: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 35
+[2025-04-13 14:03:55] Statut mis à jour avec succès
+[2025-04-13 14:03:55] Statut après mise à jour: 
+[2025-04-13 14:03:55] Informations du candidat: Nom=ben matoog, Prénom=laouini, Email=laouininourchen725@gmail.com, Matière=اللغة الفرنسية
+[2025-04-13 14:03:55] Erreur lors de la création de la matière: Cannot add or update a child row: a foreign key constraint fails (`u504721134_formation`.`matieres`, CONSTRAINT `matieres_ibfk_1` FOREIGN KEY (`classe_id`) REFERENCES `classes` (`id_classe`))
+[2025-04-13 14:03:55] Requête d'insertion du professeur: INSERT INTO professeurs (nom, prenom, email, matiere_id, login, mot_de_passe, role) 
+                                   VALUES ('ben matoog', 'laouini', 'laouininourchen725@gmail.com', 1, 'lbenmatoog', 'admin123', 'مدرس')
+[2025-04-13 14:03:55] Professeur créé avec succès! ID: 32
+[2025-04-13 14:03:57] Email envoyé avec succès à laouininourchen725@gmail.com
+[2025-04-13 14:12:17] === DÉBUT DU TRAITEMENT ===
+[2025-04-13 14:12:17] Connexion à la base de données réussie
+[2025-04-13 14:12:17] Colonnes de la table candidatures_professeurs: id, nom, statut, login, mot_de_passe, role, prenom, email, telephone, matiere, experience, message
+[2025-04-13 14:12:17] ID: 36, Statut arabe: مقبول, Statut traduit: Acceptée
+[2025-04-13 14:12:17] Tentative 1 - Requête de mise à jour du statut: UPDATE candidatures_professeurs SET statut = 'Acceptée' WHERE id = 36
+[2025-04-13 14:12:17] Résultat tentative 1: Succès
+[2025-04-13 14:12:17] Tentative 2 - Requête de mise à jour du statut: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 36
+[2025-04-13 14:12:17] Résultat tentative 2: Succès
+[2025-04-13 14:12:17] Résultat tentative 3: Succès
+[2025-04-13 14:12:17] Statut après tentatives de mise à jour: acceptée
+[2025-04-13 14:12:17] Informations du candidat: Nom=laouini, Prénom=mohammed , Email=laouininorhene@gmail.com, Matière=التاريخ والجغرافيا
+[2025-04-13 14:12:17] Erreur lors de la création de la matière: Cannot add or update a child row: a foreign key constraint fails (`u504721134_formation`.`matieres`, CONSTRAINT `matieres_ibfk_1` FOREIGN KEY (`classe_id`) REFERENCES `classes` (`id_classe`))
+[2025-04-13 14:12:17] Requête d'insertion du professeur: INSERT INTO professeurs (nom, prenom, email, matiere_id, login, mot_de_passe, role) 
+                               VALUES ('laouini', 'mohammed ', 'laouininorhene@gmail.com', 1, 'mlaouini', 'admin123', 'مدرس')
+[2025-04-13 14:12:17] Professeur créé avec succès! ID: 33
+[2025-04-13 14:12:19] Email envoyé avec succès à laouininorhene@gmail.com
+[2025-04-13 14:21:51] === DÉBUT DU TRAITEMENT ===
+[2025-04-13 14:21:51] Connexion à la base de données réussie
+[2025-04-13 14:21:51] Colonnes de la table candidatures_professeurs: id, nom, statut, login, mot_de_passe, role, prenom, email, telephone, matiere, experience, message
+[2025-04-13 14:21:51] ID: 31, Statut arabe: مقبول, Statut traduit: Acceptée
+[2025-04-13 14:21:51] Tentative 1 - Requête de mise à jour du statut: UPDATE candidatures_professeurs SET statut = 'Acceptée' WHERE id = 31
+[2025-04-13 14:21:51] Résultat tentative 1: Succès
+[2025-04-13 14:21:51] Tentative 2 - Requête de mise à jour du statut: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 31
+[2025-04-13 14:21:51] Résultat tentative 2: Succès
+[2025-04-13 14:21:51] Résultat tentative 3: Succès
+[2025-04-13 14:21:51] Statut après tentatives de mise à jour: acceptée
+[2025-04-13 14:21:51] Informations du candidat: Nom=nawel, Prénom=laouini, Email=nawellaouini210@gmail.com, Matière=التربية الإسلامية
+[2025-04-13 14:21:51] Erreur lors de la création de la matière: Cannot add or update a child row: a foreign key constraint fails (`u504721134_formation`.`matieres`, CONSTRAINT `matieres_ibfk_1` FOREIGN KEY (`classe_id`) REFERENCES `classes` (`id_classe`))
+[2025-04-13 14:21:51] Le professeur avec l'email nawellaouini210@gmail.com existe déjà
+[2025-04-13 14:21:54] Email envoyé avec succès à nawellaouini210@gmail.com
+[2025-04-14 17:45:14] === DÉBUT DU TRAITEMENT ===
+[2025-04-14 17:45:14] Connexion à la base de données réussie
+[2025-04-14 17:45:14] Colonnes de la table candidatures_professeurs: id, nom, statut, login, mot_de_passe, role, prenom, email, telephone, matiere, experience, message
+[2025-04-14 17:45:14] ID: 32, Statut arabe: مقبول, Statut traduit: Acceptée
+[2025-04-14 17:45:14] Tentative 1 - Requête de mise à jour du statut: UPDATE candidatures_professeurs SET statut = 'Acceptée' WHERE id = 32
+[2025-04-14 17:45:14] Résultat tentative 1: Succès
+[2025-04-14 17:45:14] Tentative 2 - Requête de mise à jour du statut: UPDATE candidatures_professeurs SET statut = 'مقبول' WHERE id = 32
+[2025-04-14 17:45:14] Résultat tentative 2: Succès
+[2025-04-14 17:45:14] Résultat tentative 3: Succès
+[2025-04-14 17:45:14] Statut après tentatives de mise à jour: acceptée
+[2025-04-14 17:45:14] Informations du candidat: Nom=ben mbarek, Prénom=mohammed , Email=nawellaouini210@gmail.com, Matière=اللغة الفرنسية
+[2025-04-14 17:45:14] Erreur lors de la création de la matière: Cannot add or update a child row: a foreign key constraint fails (`u504721134_formation`.`matieres`, CONSTRAINT `matieres_ibfk_1` FOREIGN KEY (`classe_id`) REFERENCES `classes` (`id_classe`))
+[2025-04-14 17:45:14] Le professeur avec l'email nawellaouini210@gmail.com existe déjà
+[2025-04-14 17:45:17] Email envoyé avec succès à nawellaouini210@gmail.com

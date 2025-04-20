@@ -1,4 +1,7 @@
 <?php
+
+
+// ... reste du code ...
 // Inclure la configuration de la base de données
 require_once 'db_config.php';
 
@@ -440,7 +443,7 @@ $nom_eleve = $student['prenom'] . ' ' . $student['nom'];
                 </a>
                 <ul class="nav-links">
                 <li><a href="dashboard.php">لوحة التحكم</a></li>
-                        <li><a href="cours.php"><i class="fas fa-book"></i> الدورس</a></li>
+                        <li><a href="liste_cours.php"><i class="fas fa-book"></i> الدورس</a></li>
                         <li><a href="student_agenda.php"><i class="fas fa-calendar-alt"></i> الروزنامة</a></li>
                         <li><a href="profile.php"><i class="fas fa-user"></i> الملف الشخصي</a></li>
                 </ul>
@@ -524,7 +527,7 @@ $nom_eleve = $student['prenom'] . ' ' . $student['nom'];
                     <h3 class="footer-title">روابط سريعة</h3>
                     <ul class="footer-links">
                     <li><a href="dashboard.php">لوحة التحكم</a></li>
-                        <li><a href="cours.php"><i class="fas fa-book"></i> الدورس</a></li>
+                        <li><a href="liste_cours.php"><i class="fas fa-book"></i> الدورس</a></li>
                         <li><a href="calendar_events.php"><i class="fas fa-calendar-alt"></i> الروزنامة</a></li>
                         <li><a href="profile.php"><i class="fas fa-user"></i> الملف الشخصي</a></li>
                     </ul>

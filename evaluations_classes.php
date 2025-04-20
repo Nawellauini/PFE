@@ -1,4 +1,5 @@
 <?php
+
 session_start(); // Démarrer la session
 
 // Assurez-vous d'inclure le fichier de configuration pour d'autres paramètres

@@ -1,5 +1,8 @@
 <?php
+
+
 include 'db.php'; // Connexion à la base de données
+
 
 if (isset($_POST['id_professeur'])) {
     $id_professeur = $_POST['id_professeur'];

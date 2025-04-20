@@ -9,12 +9,28 @@ if (!isset($_SESSION['id_eleve'])) {
 
 $id_eleve = $_SESSION['id_eleve'];
 
-$query = "SELECT observation, date_observation 
-          FROM observations 
-          WHERE eleve_id = ? 
-          ORDER BY date_observation DESC";
+// Récupérer les informations de l'élève
+$query_eleve = "SELECT e.nom, e.prenom, c.nom_classe, e.id_classe 
+                FROM eleves e 
+                JOIN classes c ON e.id_classe = c.id_classe 
+                WHERE e.id_eleve = ?";
+$stmt_eleve = $conn->prepare($query_eleve);
+$stmt_eleve->bind_param("i", $id_eleve);
+$stmt_eleve->execute();
+$result_eleve = $stmt_eleve->get_result();
+$eleve_info = $result_eleve->fetch_assoc();
+
+// Récupérer les observations de l'élève
+$query = "SELECT o.id, o.observation, o.date_observation, o.type_observation, o.classe_id 
+          FROM observations o 
+          WHERE o.eleve_id = ? 
+          ORDER BY o.date_observation DESC";
 
 $stmt = $conn->prepare($query);
+if ($stmt === false) {
+    die("Erreur de préparation de la requête: " . $conn->error);
+}
+
 $stmt->bind_param("i", $id_eleve);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -25,7 +41,7 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملاحظاتي</title>
+    <title>ملاحظاتي - نظام إدارة المدرسة</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
@@ -38,6 +54,8 @@ $result = $stmt->get_result();
             --danger: #f44336;
             --dark: #333;
             --light: #f5f5f5;
+            --border-radius: 12px;
+            --box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
         }
         
         body {
@@ -64,11 +82,12 @@ $result = $stmt->get_result();
         }
         
         .card {
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             border: none;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--box-shadow);
             overflow: hidden;
             transition: transform 0.3s ease;
+            margin-bottom: 20px;
         }
         
         .card:hover {
@@ -82,49 +101,109 @@ $result = $stmt->get_result();
             padding: 20px;
             font-weight: 700;
             font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-header-icon {
+            margin-left: 10px;
+            font-size: 1.5rem;
         }
         
         .card-body {
             padding: 25px;
         }
         
-        .observation-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-        
-        .observation-table th {
+        .student-info {
             background-color: var(--primary-light);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .student-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+        
+        .student-details h4 {
+            margin-bottom: 5px;
             color: var(--primary);
-            font-weight: 700;
-            padding: 15px;
-            text-align: right;
-            border: none;
         }
         
-        .observation-table td {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            vertical-align: middle;
+        .student-details p {
+            margin-bottom: 0;
+            color: var(--dark);
         }
         
-        .observation-table tr:last-child td {
-            border-bottom: none;
+        .observation-item {
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
         }
         
-        .observation-table tr:hover {
-            background-color: rgba(0, 0, 0, 0.02);
+        .observation-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary-light);
         }
         
-        .date-cell {
+        .observation-date {
+            display: flex;
+            align-items: center;
             color: var(--primary);
             font-weight: 500;
-            white-space: nowrap;
+            margin-bottom: 10px;
         }
         
-        .observation-cell {
+        .date-icon {
+            margin-left: 8px;
+        }
+        
+        .observation-content {
+            white-space: pre-line;
             line-height: 1.8;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .observation-type {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 10px;
+            width: fit-content;
+        }
+        
+        .type-individual {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .type-all-classes {
+            background-color: #fff8e1;
+            color: #ff8f00;
+        }
+        
+        .type-icon {
+            margin-left: 6px;
         }
         
         .no-data {
@@ -133,18 +212,6 @@ $result = $stmt->get_result();
             color: var(--danger);
             font-weight: 500;
             font-size: 1.2rem;
-        }
-        
-        .icon-container {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-left: 10px;
-            background-color: var(--primary-light);
-            color: var(--primary);
         }
         
         .back-button {
@@ -166,70 +233,19 @@ $result = $stmt->get_result();
         }
         
         @media (max-width: 768px) {
+            .student-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .student-avatar {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+            
             .card-header {
                 padding: 15px;
                 font-size: 1.3rem;
-            }
-            
-            .observation-table th,
-            .observation-table td {
-                padding: 12px 10px;
-            }
-            
-            .date-cell {
-                font-size: 0.9rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .card {
-                border-radius: 8px;
-            }
-            
-            .observation-table {
-                display: block;
-            }
-            
-            .observation-table thead {
-                display: none;
-            }
-            
-            .observation-table tbody,
-            .observation-table tr {
-                display: block;
-                width: 100%;
-            }
-            
-            .observation-table td {
-                display: block;
-                text-align: right;
-                padding: 10px;
-                position: relative;
-                border-bottom: none;
-            }
-            
-            .observation-table td:before {
-                content: attr(data-label);
-                position: absolute;
-                right: 10px;
-                top: 10px;
-                font-weight: 700;
-                color: var(--primary);
-            }
-            
-            .observation-table td.date-cell {
-                background-color: var(--primary-light);
-                color: var(--primary);
-                font-weight: 700;
-                border-radius: 8px 8px 0 0;
-                margin-top: 15px;
-                padding-right: 10px;
-            }
-            
-            .observation-table td.observation-cell {
-                padding: 15px 10px 20px;
-                margin-bottom: 5px;
-                border-bottom: 1px solid #eee;
             }
         }
     </style>
@@ -238,7 +254,7 @@ $result = $stmt->get_result();
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="dashboard.php">
+            <a class="navbar-brand" href="dashboard_eleve.php">
                 <i class="fas fa-graduation-cap me-2"></i>
                 منصة الطالب
             </a>
@@ -248,10 +264,10 @@ $result = $stmt->get_result();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard.php">الرئيسية</a>
+                        <a class="nav-link" href="dashboard_eleve.php">الرئيسية</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="observations.php">ملاحظاتي</a>
+                        <a class="nav-link active" href="eleve_observations.php">ملاحظاتي</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="profile.php">الملف الشخصي</a>
@@ -268,52 +284,59 @@ $result = $stmt->get_result();
 
     <!-- Main Content -->
     <div class="main-container">
-        <a href="dashboard.php" class="back-button">
+        <a href="dashboard_eleve.php" class="back-button">
             <i class="fas fa-arrow-right me-2"></i> العودة للرئيسية
         </a>
         
         <div class="card">
             <div class="card-header">
-                <i class="fas fa-clipboard-list me-2"></i> ملاحظاتي
+                <i class="fas fa-clipboard-list card-header-icon"></i>
+                ملاحظاتي
             </div>
             <div class="card-body">
+                <?php if ($eleve_info): ?>
+                    <div class="student-info">
+                        <div class="student-avatar">
+                            <?= substr($eleve_info['prenom'], 0, 1) . substr($eleve_info['nom'], 0, 1) ?>
+                        </div>
+                        <div class="student-details">
+                            <h4><?= htmlspecialchars($eleve_info['prenom'] . ' ' . $eleve_info['nom']) ?></h4>
+                            <p>
+                                <i class="fas fa-chalkboard-teacher me-2"></i>
+                                <?= htmlspecialchars($eleve_info['nom_classe']) ?>
+                            </p>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                
                 <?php if ($result->num_rows > 0): ?>
-                    <div class="table-responsive">
-                        <table class="observation-table">
-                            <thead>
-                                <tr>
-                                    <th width="30%">
-                                        <div class="icon-container">
-                                            <i class="fas fa-calendar-alt"></i>
-                                        </div>
-                                        التاريخ
-                                    </th>
-                                    <th>
-                                        <div class="icon-container">
-                                            <i class="fas fa-comment-alt"></i>
-                                        </div>
-                                        الملاحظة
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php while ($row = $result->fetch_assoc()): ?>
-                                    <tr>
-                                        <td class="date-cell" data-label="التاريخ:">
-                                            <i class="fas fa-calendar-day me-2"></i>
-                                            <?= date('Y-m-d', strtotime($row['date_observation'])) ?>
-                                            <div class="small text-muted mt-1">
-                                                <i class="fas fa-clock me-1"></i>
-                                                <?= date('H:i', strtotime($row['date_observation'])) ?>
-                                            </div>
-                                        </td>
-                                        <td class="observation-cell" data-label="الملاحظة:">
-                                            <?= htmlspecialchars($row['observation']) ?>
-                                        </td>
-                                    </tr>
-                                <?php endwhile; ?>
-                            </tbody>
-                        </table>
+                    <div class="observations-list">
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <div class="observation-item">
+                                <div class="observation-date">
+                                    <i class="fas fa-calendar-day date-icon"></i>
+                                    <span><?= date('Y-m-d', strtotime($row['date_observation'])) ?></span>
+                                    <span class="mx-2">|</span>
+                                    <i class="fas fa-clock date-icon"></i>
+                                    <span><?= date('H:i', strtotime($row['date_observation'])) ?></span>
+                                </div>
+                                <div class="observation-content">
+                                    <?= nl2br(htmlspecialchars($row['observation'])) ?>
+                                </div>
+                                
+                                <?php if ($row['type_observation'] == 'toutes_classes'): ?>
+                                    <div class="observation-type type-all-classes">
+                                        <i class="fas fa-users type-icon"></i>
+                                        ملاحظة لجميع الطلاب
+                                    </div>
+                                <?php else: ?>
+                                    <div class="observation-type type-individual">
+                                        <i class="fas fa-user type-icon"></i>
+                                        ملاحظة شخصية
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        <?php endwhile; ?>
                     </div>
                 <?php else: ?>
                     <div class="no-data">
@@ -328,7 +351,7 @@ $result = $stmt->get_result();
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3 mt-5">
         <div class="container">
-            <p class="mb-0">&copy; <?= date('Y') ?> منصة الطالب - جميع الحقوق محفوظة</p>
+            <p class="mb-0">&copy; <?= date('Y') ?> نظام إدارة المدرسة - جميع الحقوق محفوظة</p>
         </div>
     </footer>
 

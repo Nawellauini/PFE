@@ -470,31 +470,20 @@ if ($result) {
             <span>إدارة المعلمين</span>
         </a>
         
-        <a href="#" class="menu-item">
+        <a href="view_inspecteur.php" class="menu-item">
             <i class="fas fa-user-tie"></i>
             <span>إدارة المتفقدين</span>
         </a>
         
-        <a href="#" class="menu-item">
+        <a href="classes_admin.php" class="menu-item">
             <i class="fas fa-school"></i>
             <span>إدارة الأقسام</span>
         </a>
         
-        <a href="#" class="menu-item">
+        <a href="matiere.php" class="menu-item">
             <i class="fas fa-book"></i>
             <span>إدارة المواد</span>
         </a>
-        
-        <a href="#" class="menu-item">
-            <i class="fas fa-calendar-alt"></i>
-            <span>الجدول الزمني</span>
-        </a>
-        
-        <a href="#" class="menu-item">
-            <i class="fas fa-cog"></i>
-            <span>الإعدادات</span>
-        </a>
-        
         <a href="logout.php" class="menu-item">
             <i class="fas fa-sign-out-alt"></i>
             <span>تسجيل الخروج</span>
@@ -633,8 +622,8 @@ if ($result) {
                 </div>
                 
                 <div class="action-card">
-                    <i class="fas fa-file-export"></i>
-                    <p>تصدير البيانات</p>
+                <i class="fas fa-book-medical"></i>
+                    <p>إضافة مادة</p>
                 </div>
             </div>
         </div>
@@ -683,8 +672,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     case 'إضافة قسم':
                     window.location.href = 'add_classe.php';
                     break;
-                case 'تصدير البيانات':
-                    alert('سيتم تنفيذ هذه الميزة قريبًا');
+                    case 'إضافة مادة':
+                    window.location.href = 'ajouter_matiere.php';
                     break;
             }
         });

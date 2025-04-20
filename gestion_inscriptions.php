@@ -1,5 +1,8 @@
 <?php
+
+
 include 'db_config.php';
+
 $result = $conn->query("SELECT * FROM demandes_inscription ORDER BY date_demande DESC");
 
 // Statistiques

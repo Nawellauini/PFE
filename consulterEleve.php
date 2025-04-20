@@ -2,6 +2,7 @@
 include 'db_config.php';
 session_start();
 
+
 // Vérifier si le professeur est connecté
 if (!isset($_SESSION['id_professeur'])) {
     header("Location: login.php");

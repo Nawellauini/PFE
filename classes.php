@@ -20,7 +20,14 @@ $queryProf->execute();
 $prof = $queryProf->get_result()->fetch_assoc();
 $nomProf = $prof['prenom'] . ' ' . $prof['nom'];
 
-// Récupérer les classes du professeur
+// Vérifier si la colonne année existe dans la table classes
+$check_column = $conn->query("SHOW COLUMNS FROM classes LIKE 'annee'");
+if ($check_column->num_rows == 0) {
+    // Ajouter la colonne année si elle n'existe pas
+    $conn->query("ALTER TABLE classes ADD COLUMN annee VARCHAR(9) DEFAULT '2023-2024'");
+}
+
+// Récupérer les classes du professeur avec l'année
 $queryClasses = $conn->prepare("SELECT c.*, COUNT(e.id_eleve) as nb_eleves 
                                FROM professeurs_classes pc
                                JOIN classes c ON pc.id_classe = c.id_classe
@@ -37,7 +44,7 @@ $classes = $queryClasses->get_result()->fetch_all(MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الدروس | منصة المدرس</title>
+    <title>الأقسام | منصة المدرس</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,7 +78,7 @@ $classes = $queryClasses->get_result()->fetch_all(MYSQLI_ASSOC);
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMxZTYwOTEiIGZpbGwtb3BhY2l0eT0iLjAzIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIgMS44LTQgNC00czQgMS44IDQgNC0xLjggNC00IDQtNC0xLjgtNC00bTAtMTZjMC0yLjIgMS44LTQgNC00czQgMS44IDQgNC0xLjggNC00IDQtNC0xLjgtNC00bTE2IDE2YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0tMTYgMTZjMC0yLjIgMS44LTQgNC00czQgMS44IDQgNC0xLjggNC00IDQtNC0xLjgtNC00bTE2IDBjMC0yLjIgMS44LTQgNC00czQgMS44IDQgNC0xLjggNC00IDQtNC0xLjgtNC00bTAtMTZjMC0yLjIgMS44LTQgNC00czQgMS44IDQgNC0xLjggNC00IDQtNC0xLjgtNC00TTIwIDM0YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0wLTE2YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0xNiAwYzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0tOC04YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0wIDE2YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0wIDE2YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0wIDE2YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNCIvPjwvZz48L2c+PC9zdmc+');
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMxZTYwOTEiIGZpbGwtb3BhY2l0eT0iLjAzIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIgMS44LTQgNC00czQgMS44IDQgNC0xLjggNC00IDQtNC0xLjgtNC00bTAtMTZjMC0yLjIgMS44LTQgNC00czQgMS44IDQgNC0xLjggNC00IDQtNC0xLjgtNC00bTE2IDE2YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0tMTYgMTZjMC0yLjIgMS44LTQgNC00czQgMS44IDQgNC0xLjggNC00IDQtNC0xLjgtNC00bTE2IDBjMC0yLjIgMS44LTQgNC00czQgMS44IDQgNC0xLjggNC00IDQtNC0xLjgtNC00bTAtMTZjMC0yLjIgMS44LTQgNC00czQgMS44IDQgNC0xLjggNC00IDQtNC0xLjgtNC00TTIwIDM0YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0wLTE2YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0xNiAwYzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0tOC04YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0wIDE2YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNG0wIDE2YzAtMi4yIDEuOC00IDQtNHM0IDEuOCA0IDQtMS44IDQtNCA0LTQtMS44LTQtNCIvPjwvZz48L2c+PC9zdmc+');
         }
 
         /* Header */
@@ -452,6 +459,37 @@ $classes = $queryClasses->get_result()->fetch_all(MYSQLI_ASSOC);
                 grid-template-columns: 1fr;
             }
         }
+
+        .class-year {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        
+        .class-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .current-year {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            font-weight: bold;
+        }
+        .current-year .year-badge {
+            background-color: #2196F3;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
     </style>
 </head>
 <body>
@@ -465,7 +503,7 @@ $classes = $queryClasses->get_result()->fetch_all(MYSQLI_ASSOC);
                 </a>
                 <ul class="nav-links">
                     <li><a href="dashboardProf.php"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a></li>
-                    <li><a href="classes.php" class="active"><i class="fas fa-users"></i> الدروس</a></li>
+                    <li><a href="classes.php"><i class="fas fa-users"></i> الأقسام</a></li>
                     <li><a href="calendar.php"><i class="fas fa-calendar-alt"></i> الرزنامة</a></li>
                     <li><a href="calendar_events.php"><i class="fas fa-plus-circle"></i> إضافة موعد </a></li>
                 </ul>
@@ -493,13 +531,19 @@ $classes = $queryClasses->get_result()->fetch_all(MYSQLI_ASSOC);
                 <div class="classes-grid">
                     <?php foreach ($classes as $class): ?>
                         <div class="class-card animate-fade-in">
-                           
+                            <div class="class-header">
+                                <h3 class="class-name"><?= htmlspecialchars($class['nom_classe']) ?></h3>
+                                <span class="class-year <?php echo ($class['annee'] == '2023-2024') ? 'current-year' : ''; ?>">
+                                    <span class="<?php echo ($class['annee'] == '2023-2024') ? 'year-badge' : ''; ?>">
+                                        <?= htmlspecialchars($class['annee']) ?>
+                                    </span>
+                                </span>
+                            </div>
                             <div class="class-body">
                                 <div class="class-stats">
                                     <div class="class-stat">
                                         <div class="class-stat-value"><?= $class['nb_eleves'] ?></div>
                                         <div class="class-stat-label">تلميذ</div>
-
                                     </div>
                                     
                                     <?php
@@ -518,11 +562,11 @@ $classes = $queryClasses->get_result()->fetch_all(MYSQLI_ASSOC);
                                 
                                 <div class="class-actions">
                                     <a href="class_details.php?id=<?= $class['id_classe'] ?>" class="class-btn">
-                                    <i class="fas fa-info-circle"></i> معلومات
+                                        <i class="fas fa-info-circle"></i> معلومات
                                     </a>
                                     
                                     <a href="calendar_events.php?class=<?= $class['id_classe'] ?>" class="class-btn">
-                                    <i class="fas fa-calendar-plus"></i> إضافة موعد
+                                        <i class="fas fa-calendar-plus"></i> إضافة موعد
                                     </a>
                                 </div>
                             </div>
@@ -545,7 +589,7 @@ $classes = $queryClasses->get_result()->fetch_all(MYSQLI_ASSOC);
                     <h3 class="footer-title">روابط سريعة</h3>
                     <ul class="footer-links">
                         <li><a href="dashboardProf.php">لوحة التحكم</a></li>
-                        <li><a href="classes.php" class="active"><i class="fas fa-users"></i> الدروس</a></li>
+                        <li><a href="classes.php"><i class="fas fa-users"></i> الأقسام</a></li>
                         <li><a href="calendar.php"><i class="fas fa-calendar-alt"></i> الرزنامة</a></li>
                         <li><a href="calendar_events.php"><i class="fas fa-plus-circle"></i> إضافة موعد </a></li>
 

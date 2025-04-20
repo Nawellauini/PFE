@@ -1,5 +1,9 @@
 <?php
 include 'db_config.php';
+
+
+
+
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 // Démarrer la session pour accéder aux variables de session

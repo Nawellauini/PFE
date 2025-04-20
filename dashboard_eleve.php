@@ -1,6 +1,8 @@
 <?php
+
 session_start();
 include 'db_config.php';
+
 
 // Vérifier si l'utilisateur est bien un élève et que l'email est défini
 if (!isset($_SESSION['role']) || $_SESSION['role'] != 'eleve') {
@@ -905,6 +907,13 @@ try {
                     </a>
                 </li>
                 <li class="nav-item">
+    <a href="consulter_video.php" class="nav-link">
+        <i class="fas fa-video nav-icon"></i>
+        <span class="nav-text">مشاهدة الفيديوهات</span>
+    </a>
+</li>
+
+                <li class="nav-item">
     <a href="envoyer_message_eleve.php" class="nav-link">
         <i class="fas fa-paper-plane nav-icon"></i>
         <span class="nav-text">إرسال رسالة إلى الأستاذ</span>
@@ -963,12 +972,7 @@ try {
                 <!-- Matières et Notes -->
                 <div class="col-lg-7">
                     <div class="card">
-                        <div class="card-header">
-                            <span>المواد والنتائج</span>
-                            <div class="card-header-icon">
-                                <i class="fas fa-book"></i>
-                            </div>
-                        </div>
+                      
                         <div class="card-body">
                             <?php foreach ($matieres as $matiere): ?>
                                 <div class="progress-card">

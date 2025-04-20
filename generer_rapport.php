@@ -1,4 +1,5 @@
 <?php
+
 require_once('tcpdf/tcpdf.php'); // Inclure TCPDF
 include 'db_config.php'; // Connexion à la base de données
 

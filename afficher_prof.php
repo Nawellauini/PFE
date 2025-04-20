@@ -1,6 +1,7 @@
 <?php
 include 'db_config.php';
 
+
 // Récupération du filtre de matière
 $matiere_filter = isset($_GET['matiere_id']) ? intval($_GET['matiere_id']) : 0;
 
@@ -48,6 +49,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $matiere_id = $_POST['matiere_id'];
     $classes = isset($_POST['classes']) ? $_POST['classes'] : [];
 
+    // Récupérer les anciennes informations pour les comparer
+    $query_old = "SELECT p.*, m.nom as nom_matiere 
+                 FROM professeurs p 
+                 LEFT JOIN matieres m ON p.matiere_id = m.matiere_id 
+                 WHERE p.id_professeur = ?";
+    $stmt_old = $conn->prepare($query_old);
+    $stmt_old->bind_param("i", $id);
+    $stmt_old->execute();
+    $old_data = $stmt_old->get_result()->fetch_assoc();
+
     $stmt = $conn->prepare("UPDATE professeurs SET nom=?, prenom=?, email=?, login=?, mot_de_passe=?, matiere_id=? WHERE id_professeur=?");
     $stmt->bind_param("sssssii", $nom, $prenom, $email, $login, $mp, $matiere_id, $id);
     
@@ -56,6 +67,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
         foreach ($classes as $id_classe) {
             $conn->query("INSERT INTO professeurs_classes (id_professeur, id_classe) VALUES ($id, $id_classe)");
         }
+
+        // Récupérer le nom de la nouvelle matière
+        $query_matiere = "SELECT nom FROM matieres WHERE matiere_id = ?";
+        $stmt_matiere = $conn->prepare($query_matiere);
+        $stmt_matiere->bind_param("i", $matiere_id);
+        $stmt_matiere->execute();
+        $result_matiere = $stmt_matiere->get_result();
+        $matiere = $result_matiere->fetch_assoc();
+        
+        // Préparer le message des changements
+        $changes = [];
+        if ($old_data['nom'] !== $nom || $old_data['prenom'] !== $prenom) {
+            $changes[] = "الاسم: من {$old_data['nom']} {$old_data['prenom']} إلى {$nom} {$prenom}";
+        }
+        if ($old_data['email'] !== $email) {
+            $changes[] = "البريد الإلكتروني: من {$old_data['email']} إلى {$email}";
+        }
+        if ($old_data['matiere_id'] != $matiere_id) {
+            $changes[] = "المادة: من {$old_data['nom_matiere']} إلى {$matiere['nom']}";
+        }
+        if ($old_data['login'] !== $login) {
+            $changes[] = "اسم المستخدم: من {$old_data['login']} إلى {$login}";
+        }
+        if ($old_data['mot_de_passe'] !== $mp) {
+            $changes[] = "تم تغيير كلمة المرور";
+        }
+
+        // Envoyer l'email si des changements ont été effectués
+        if (!empty($changes)) {
+            require_once 'send_email.php';
+            sendModificationEmail($email, $nom, $prenom, $changes, $mp);
+        }
+
         $status_message = "تم تحديث معلومات الأستاذ بنجاح";
         $status_type = "success";
     } else {

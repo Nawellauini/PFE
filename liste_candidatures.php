@@ -1,4 +1,5 @@
 <?php
+
 require 'db_config.php';
 
 // Récupérer les candidatures en attente

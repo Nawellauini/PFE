@@ -1,5 +1,6 @@
 <?php
-require 'db_config.php';
+require 'db_base.php';
+
 
 $success_message = '';
 $error_message = '';
@@ -12,9 +13,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $matiere = $conn->real_escape_string($_POST['matiere']);
     $experience = $conn->real_escape_string($_POST['experience']);
     $message = $conn->real_escape_string($_POST['message']);
+    $mot_de_passe = $conn->real_escape_string($_POST['mot_de_passe']);
 
-    $sql = "INSERT INTO candidatures_professeurs (nom, prenom, email, telephone, matiere, experience, message) 
-            VALUES ('$nom', '$prenom', '$email', '$telephone', '$matiere', '$experience', '$message')";
+    // Générer le login
+    $login = strtolower(substr($prenom, 0, 1) . $nom);
+    $login = preg_replace('/[^a-z0-9]/', '', $login);
+    
+    // Vérifier si le login existe déjà
+    $check_login = $conn->prepare("SELECT COUNT(*) as count FROM candidatures_professeurs WHERE login = ?");
+    $check_login->bind_param("s", $login);
+    $check_login->execute();
+    $result = $check_login->get_result();
+    $row = $result->fetch_assoc();
+    
+    // Si le login existe, ajouter un numéro
+    if ($row['count'] > 0) {
+        $i = 1;
+        $original_login = $login;
+        do {
+            $login = $original_login . $i;
+            $check_login->bind_param("s", $login);
+            $check_login->execute();
+            $result = $check_login->get_result();
+            $row = $result->fetch_assoc();
+            $i++;
+        } while ($row['count'] > 0);
+    }
+
+    $sql = "INSERT INTO candidatures_professeurs (nom, prenom, email, telephone, matiere, experience, message, mot_de_passe, login) 
+            VALUES ('$nom', '$prenom', '$email', '$telephone', '$matiere', '$experience', '$message', '$mot_de_passe', '$login')";
     
     if ($conn->query($sql) === TRUE) {
         $success_message = "تم إرسال طلبك بنجاح! سنتواصل معك قريبًا.";
@@ -1021,6 +1048,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="tel" id="telephone" name="telephone" class="form-input" required>
                         <div class="error-message">يرجى إدخال رقم هاتف صحيح</div>
                     </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mot_de_passe" class="form-label">كلمة المرور</label>
+                    <input type="password" id="mot_de_passe" name="mot_de_passe" class="form-input" required minlength="8">
+                    <div class="error-message">يجب أن تتكون كلمة المرور من 8 أحرف على الأقل</div>
                 </div>
                 
                 <div class="form-group">

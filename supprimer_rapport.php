@@ -1,6 +1,7 @@
 <?php
+
 session_start();
-include 'db_config.php'; // Connexion à la base de données
+include 'db_config.php';
 
 // Vérifier si l'ID du rapport est passé en paramètre
 if (isset($_GET['id'])) {

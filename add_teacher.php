@@ -1,5 +1,6 @@
 <?php
 include 'db_config.php';
+
 require 'libs/PHPMailer/src/PHPMailer.php';
 require 'libs/PHPMailer/src/SMTP.php';
 require 'libs/PHPMailer/src/Exception.php';

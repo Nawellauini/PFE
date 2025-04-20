@@ -1,6 +1,8 @@
 <?php
 include 'db_config.php'; // ربط بقاعدة البيانات
 
+
+
 $message = ''; // لعرض الرسائل
 $message_type = '';
 

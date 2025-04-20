@@ -2,6 +2,7 @@
 // تضمين ملف التكوين للاتصال بقاعدة البيانات
 require_once 'db_config.php';
 
+
 // بدء الجلسة
 session_start();
 
@@ -64,7 +65,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             // معالجة ملف الفيديو
             $target_file = $target_dir . basename($_FILES["video"]["name"]);
-            move_uploaded_file($_FILES["video"]["tmp_name"], $target_file);
+            
+            // التحقق من حجم الملف (100 ميجابايت)
+            $maxFileSize = 100 * 1024 * 1024; // 100MB in bytes
+            if ($_FILES["video"]["size"] > $maxFileSize) {
+                $error_message = "حجم الملف كبير جداً. الحد الأقصى هو 100 ميجابايت.";
+            } else {
+                move_uploaded_file($_FILES["video"]["tmp_name"], $target_file);
+            }
 
             // إدراج الفيديو في قاعدة البيانات
             $stmt = $conn->prepare("INSERT INTO videos (titre_video, url_video, id_professeur, id_classe, id_theme, matiere) 
@@ -734,21 +742,16 @@ if ($queryVideos) {
                     </div>
                     <?php endif; ?>
 
-                    <form method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data" class="video-form">
                         <div class="form-group">
-                            <label for="titre_video" class="form-label">عنوان الفيديو</label>
-                            <input type="text" id="titre_video" name="titre_video" class="form-control" placeholder="أدخل عنوان الفيديو" required>
+                            <label for="titre_video">عنوان الفيديو:</label>
+                            <input type="text" id="titre_video" name="titre_video" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="video" class="form-label">ملف الفيديو</label>
-                            <div class="form-file">
-                                <label for="video" class="form-file-label">
-                                    <i class="fas fa-upload form-file-icon"></i>
-                                    <span class="form-file-text" id="file-name">اختر ملف فيديو</span>
-                                </label>
-                                <input type="file" id="video" name="video" class="form-file-input" accept="video/*" required>
-                            </div>
+                            <label for="video">اختر ملف الفيديو:</label>
+                            <input type="file" id="video" name="video" accept="video/*" required>
+                            <small class="form-text">يمكنك تحميل ملفات الفيديو حتى 100 ميجابايت</small>
                         </div>
 
                         <div class="form-group">

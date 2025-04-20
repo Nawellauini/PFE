@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include 'db_config.php';
 
@@ -292,8 +293,7 @@ $professeur = $result->fetch_assoc();
             </div>
             <div class="menu-content">
                 <ul class="menu-item">
-                <li><a href="dashboard_professeur.php" class="menu-link"><i class="fas fa-edit"></i> إدخال النتائج الدراسية</a></li>
-                <li><a href="ajouter_cours.php" class="menu-link"><i class="fas fa-edit"></i> إضافة الدروس</a></li>
+                <li><a href="liste_notes.php" class="menu-link"><i class="fas fa-edit"></i> قائمة النتائج</a></li>
                 <li><a href="liste_cours.php" class="menu-link"><i class="fas fa-edit"></i> استعراض الدروس</a></li>
             </div>
         </div>
@@ -306,6 +306,8 @@ $professeur = $result->fetch_assoc();
             </div>
             <div class="menu-content">
                 <ul class="menu-item">
+                <li><a href="profile_prof.php" class="menu-link profile-link"><i class="fas fa-user"></i> عرض الملف الشخصي</a></li>
+
                     <li><a href="ajouter_remarque.php" class="menu-link"><i class="fas fa-plus"></i> إضافة ملاحظة</a></li>
                     <li><a href="consulter_remarques.php" class="menu-link"><i class="fas fa-eye"></i> عرض الملاحظات</a></li>
                 </ul>
@@ -337,7 +339,7 @@ $professeur = $result->fetch_assoc();
             </div>
             <div class="menu-content">
                 <ul class="menu-item">
-                <li><a href="ajouter_observation.php" class="menu-link"><i class="fas fa-plus-circle"></i> إضافة ملاحظة</a></li>
+                <li><a href="liste_observations.php" class="menu-link"><i class="fas fa-plus-circle"></i>قائمة الملاحظات</a></li>
                 </ul>
             </div>
         </div>

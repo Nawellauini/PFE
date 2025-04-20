@@ -1,5 +1,15 @@
 <?php 
-include 'db_config.php';
+
+include 'db_base.php';
+
+// Vérifier si la colonne statut existe, sinon la créer
+$check_column = $conn->query("SHOW COLUMNS FROM candidatures_professeurs LIKE 'statut'");
+if ($check_column->num_rows == 0) {
+    $conn->query("ALTER TABLE candidatures_professeurs ADD COLUMN statut VARCHAR(50) DEFAULT 'قيد الانتظار'");
+}
+
+// Mettre à jour les statuts vides à "قيد الانتظار" (en attente)
+$conn->query("UPDATE candidatures_professeurs SET statut = 'قيد الانتظار' WHERE statut IS NULL OR statut = ''");
 
 // Récupérer toutes les candidatures - Modification de la requête pour trier par ID au lieu de date_candidature
 $result = $conn->query("SELECT * FROM candidatures_professeurs ORDER BY id DESC");
@@ -34,6 +44,8 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <style>
         :root {
             --primary-color: #3b82f6;
@@ -534,7 +546,7 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
         }
         
         .card-body {
-            padding: 0;
+            padding: 20px;
         }
         
         /* Table */
@@ -542,61 +554,79 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
             overflow-x: auto;
         }
         
-        table {
+        .applications-table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         
-        th, td {
+        .applications-table thead {
+            background: linear-gradient(to right, var(--info-color), var(--info-dark));
+            color: white;
+        }
+        
+        .applications-table th {
+            padding: 15px 20px;
+            text-align: right;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            white-space: nowrap;
+        }
+        
+        .applications-table td {
             padding: 15px 20px;
             text-align: right;
             border-bottom: 1px solid #e5e7eb;
+            font-size: 14px;
+            vertical-align: middle;
         }
         
-        th {
-            background-color: #f9fafb;
-            font-weight: 600;
-            color: var(--dark-color);
-            white-space: nowrap;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        
-        tr:last-child td {
+        .applications-table tbody tr:last-child td {
             border-bottom: none;
         }
         
-        tr:hover td {
+        .applications-table tbody tr {
+            transition: all 0.2s ease;
+        }
+        
+        .applications-table tbody tr:hover {
             background-color: rgba(99, 102, 241, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         
         .status-badge {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 5px;
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
             text-align: center;
+            min-width: 100px;
         }
         
         .status-pending {
             background-color: var(--warning-light);
-            color: var(--warning-color);
+            color: var(--warning-dark);
             border: 1px solid var(--warning-color);
         }
         
         .status-accepted {
             background-color: var(--success-light);
-            color: var(--success-color);
+            color: var(--success-dark);
             border: 1px solid var(--success-color);
         }
         
         .status-rejected {
             background-color: var(--danger-light);
-            color: var(--danger-color);
+            color: var(--danger-dark);
             border: 1px solid var(--danger-color);
         }
         
@@ -613,6 +643,7 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
             cursor: pointer;
             text-decoration: none;
             margin-right: 5px;
+            min-width: 80px;
         }
         
         .btn-view {
@@ -624,6 +655,7 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
             background-color: var(--info-color);
             color: white;
             transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.3);
         }
         
         .btn-accept {
@@ -635,6 +667,7 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
             background-color: var(--success-color);
             color: white;
             transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3);
         }
         
         .btn-refuse {
@@ -646,6 +679,13 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
             background-color: var(--danger-color);
             color: white;
             transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.3);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
         }
         
         /* Modal */
@@ -750,10 +790,13 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
             padding: 15px;
             border-radius: 8px;
             transition: all var(--transition-speed) ease;
+            border-right: 3px solid transparent;
         }
         
         .detail-item:hover {
             background-color: var(--info-light);
+            border-right-color: var(--info-color);
+            transform: translateY(-2px);
         }
         
         .detail-label {
@@ -884,6 +927,99 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
             cursor: pointer;
         }
         
+        /* Filter controls */
+        .filter-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .filter-control:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-control label {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--dark-color);
+            margin-bottom: 0;
+        }
+        
+        .filter-control select, 
+        .filter-control input {
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 14px;
+            outline: none;
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .filter-control select:focus, 
+        .filter-control input:focus {
+            border-color: var(--info-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        
+        /* DataTables customization */
+        .dataTables_wrapper .dataTables_length, 
+        .dataTables_wrapper .dataTables_filter {
+            margin-bottom: 1.5rem;
+        }
+        
+        .dataTables_wrapper .dataTables_filter input {
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            padding: 8px 12px;
+            margin-right: 0.5rem;
+        }
+        
+        .dataTables_wrapper .dataTables_length select {
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            padding: 8px;
+            margin: 0 0.5rem;
+        }
+        
+        .dataTables_wrapper .dataTables_info, 
+        .dataTables_wrapper .dataTables_paginate {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+        }
+        
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin: 0 0.25rem;
+            border: 1px solid #e5e7eb;
+            background: white;
+        }
+        
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+            background: var(--info-color);
+            border-color: var(--info-color);
+            color: white !important;
+        }
+        
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: var(--info-light);
+            border-color: var(--info-color);
+            color: var(--info-color) !important;
+        }
+        
         /* Responsive */
         @media (max-width: 1200px) {
             .stats-grid {
@@ -946,11 +1082,42 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
             .stats-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
         }
         
         @media (min-width: 992px) {
             .user-info {
                 display: block;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            .sidebar, .header, .card-tools, .action-buttons, .modal, .notification {
+                display: none !important;
+            }
+            
+            .main-content {
+                margin-right: 0;
+            }
+            
+            .card {
+                box-shadow: none;
+                border: 1px solid #e5e7eb;
+            }
+            
+            .applications-table th {
+                background: #f3f4f6 !important;
+                color: black !important;
+            }
+            
+            .status-badge {
+                border: 1px solid #e5e7eb;
+                background: none !important;
+                color: black !important;
             }
         }
     </style>
@@ -1152,11 +1319,49 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
                         <button class="action-btn btn-view" onclick="printTable()">
                             <i class="fas fa-print"></i> طباعة
                         </button>
+                        <button class="action-btn btn-view" id="refreshTable">
+                            <i class="fas fa-sync-alt"></i> تحديث
+                        </button>
                     </div>
                 </div>
                 <div class="card-body">
+                    <!-- Filter Controls -->
+                    <div class="filter-controls">
+                        <div class="filter-control">
+                            <label for="statusFilter">الحالة:</label>
+                            <select id="statusFilter" class="form-select">
+                                <option value="">الكل</option>
+                                <option value="قيد الانتظار">قيد الانتظار</option>
+                                <option value="مقبول">مقبول</option>
+                                <option value="مرفوض">مرفوض</option>
+                            </select>
+                        </div>
+                        <div class="filter-control">
+                            <label for="subjectFilter">المادة:</label>
+                            <select id="subjectFilter" class="form-select">
+                                <option value="">الكل</option>
+                                <?php
+                                $subjects = $conn->query("SELECT DISTINCT matiere FROM candidatures_professeurs WHERE matiere IS NOT NULL AND matiere != ''");
+                                while ($subject = $subjects->fetch_assoc()) {
+                                    echo "<option value='" . htmlspecialchars($subject['matiere']) . "'>" . htmlspecialchars($subject['matiere']) . "</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="filter-control">
+                            <label for="experienceFilter">الخبرة:</label>
+                            <select id="experienceFilter" class="form-select">
+                                <option value="">الكل</option>
+                                <option value="أقل من سنة">أقل من سنة</option>
+                                <option value="1-3 سنوات">1-3 سنوات</option>
+                                <option value="3-5 سنوات">3-5 سنوات</option>
+                                <option value="أكثر من 5 سنوات">أكثر من 5 سنوات</option>
+                            </select>
+                        </div>
+                    </div>
+                    
                     <div class="table-responsive">
-                        <table id="applicationsTable">
+                        <table id="applicationsTable" class="applications-table display">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -1196,17 +1401,19 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
                                     <td><?= htmlspecialchars($row['experience']) ?></td>
                                     <td><span class="status-badge <?= $statusClass ?>"><?= $statusText ?></span></td>
                                     <td>
-                                        <button class="action-btn btn-view" onclick="viewDetails(<?= $row['id'] ?>, '<?= addslashes($row['nom']) ?>', '<?= addslashes($row['prenom']) ?>', '<?= addslashes($row['email']) ?>', '<?= addslashes($row['telephone']) ?>', '<?= addslashes($row['matiere']) ?>', '<?= addslashes($row['experience']) ?>', '<?= addslashes($row['message']) ?>', '<?= addslashes($row['statut']) ?>')">
-                                            <i class="fas fa-eye"></i> عرض
-                                        </button>
-                                        <?php if ($row['statut'] != 'Acceptée' && $row['statut'] != 'Refusée' && $row['statut'] != 'مقبول' && $row['statut'] != 'مرفوض'): ?>
-                                        <button class="action-btn btn-accept" onclick="confirmAction(<?= $row['id'] ?>, 'مقبول')">
-                                            <i class="fas fa-check"></i> قبول
-                                        </button>
-                                        <button class="action-btn btn-refuse" onclick="confirmAction(<?= $row['id'] ?>, 'مرفوض')">
-                                            <i class="fas fa-times"></i> رفض
-                                        </button>
-                                        <?php endif; ?>
+                                        <div class="action-buttons">
+                                            <button class="action-btn btn-view" onclick="viewDetails(<?= $row['id'] ?>, '<?= addslashes($row['nom']) ?>', '<?= addslashes($row['prenom']) ?>', '<?= addslashes($row['email']) ?>', '<?= addslashes($row['telephone']) ?>', '<?= addslashes($row['matiere']) ?>', '<?= addslashes($row['experience']) ?>', '<?= addslashes($row['message']) ?>', '<?= addslashes($row['statut']) ?>')">
+                                                <i class="fas fa-eye"></i> عرض
+                                            </button>
+                                            <?php if ($row['statut'] != 'Acceptée' && $row['statut'] != 'Refusée' && $row['statut'] != 'مقبول' && $row['statut'] != 'مرفوض'): ?>
+                                            <button class="action-btn btn-accept" onclick="confirmAction(<?= $row['id'] ?>, 'مقبول')">
+                                                <i class="fas fa-check"></i> قبول
+                                            </button>
+                                            <button class="action-btn btn-refuse" onclick="confirmAction(<?= $row['id'] ?>, 'مرفوض')">
+                                                <i class="fas fa-times"></i> رفض
+                                            </button>
+                                            <?php endif; ?>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php 
@@ -1238,7 +1445,7 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
 <div id="confirmModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h2 class="modal-title">تأكيد الإجراء</h2>
+            <h2 class="modal-title"><i class="fas fa-question-circle"></i> تأكيد الإجراء</h2>
             <button class="close-modal" onclick="closeModal('confirmModal')">
                 <i class="fas fa-times"></i>
             </button>
@@ -1315,8 +1522,70 @@ $candidatures_refusees = $conn->query("SELECT COUNT(*) as total FROM candidature
     </button>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
-   // Sidebar Toggle
+// Initialiser DataTables
+$(document).ready(function() {
+    var table = $('#applicationsTable').DataTable({
+        language: {
+            "sProcessing": "جارٍ التحميل...",
+            "sLengthMenu": "عرض _MENU_ مدخلات",
+            "sZeroRecords": "لم يعثر على أية سجلات",
+            "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+            "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+            "sInfoFiltered": "(منتقاة من مجموع _MAX_ مدخل)",
+            "sInfoPostFix": "",
+            "sSearch": "بحث:",
+            "sUrl": "",
+            "oPaginate": {
+                "sFirst": "الأول",
+                "sPrevious": "السابق",
+                "sNext": "التالي",
+                "sLast": "الأخير"
+            }
+        },
+        responsive: true,
+        order: [[0, 'desc']]
+    });
+    
+    // Filtres personnalisés
+    $('#statusFilter, #subjectFilter, #experienceFilter').on('change', function() {
+        filterTable();
+    });
+    
+    function filterTable() {
+        var statusFilter = $('#statusFilter').val();
+        var subjectFilter = $('#subjectFilter').val();
+        var experienceFilter = $('#experienceFilter').val();
+        
+        // Réinitialiser les filtres
+        table.columns().search('').draw();
+        
+        // Appliquer les filtres
+        if (statusFilter) {
+            table.column(6).search(statusFilter).draw();
+        }
+        
+        if (subjectFilter) {
+            table.column(4).search(subjectFilter).draw();
+        }
+        
+        if (experienceFilter) {
+            table.column(5).search(experienceFilter).draw();
+        }
+    }
+    
+    // Bouton de rafraîchissement
+    $('#refreshTable').on('click', function() {
+        location.reload();
+    });
+});
+
+// Sidebar Toggle
 document.getElementById('sidebarToggle').addEventListener('click', function() {
     document.getElementById('sidebar').classList.toggle('show');
 });
@@ -1385,6 +1654,10 @@ function confirmAction(id, status) {
     document.getElementById('confirmModal').style.display = 'flex';
     
     document.getElementById('confirmBtn').onclick = function() {
+        // Afficher un indicateur de chargement
+        document.getElementById('confirmBtn').innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التنفيذ...';
+        document.getElementById('confirmBtn').disabled = true;
+        
         // Redirection vers modifier_statut_candidature.php
         window.location.href = 'modifier_statut_candidature.php?id=' + currentId + '&statut=' + status;
         
@@ -1426,7 +1699,7 @@ function updateInterfaceStatus(id, status) {
                         }
                     });
                     
-                    actionsCell.innerHTML = viewButton;
+                    actionsCell.innerHTML = '<div class="action-buttons">' + viewButton + '</div>';
                     
                     // Mettre à jour également le modal de détails s'il est ouvert
                     const detailStatus = document.getElementById('detailStatus');

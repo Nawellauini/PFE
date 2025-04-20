@@ -2,6 +2,7 @@
 session_start();
 include 'db_config.php';
 
+
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['id_inspecteur'])) {
     header("Location: login.php?error=Vous devez être connecté en tant qu'inspecteur");
